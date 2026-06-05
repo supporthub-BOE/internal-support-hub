@@ -901,26 +901,85 @@
         <div class="page-title">Reports</div>
         <div class="page-desc">All weekly and ongoing reports.</div>
       </div>
-      <div class="resource-block">
-        <div class="resource-block-title">Weekly TPH — Zendesk</div>
-        <div class="resource-content editable" contenteditable="false">Track tickets per hour via the Zendesk Report spreadsheet. Updated every week by the team lead.</div>
-        <div style="margin-top:10px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/13MJ4L0IghAwddZb6tHVwGEaKvVEcSJv6L1cdfLNFtQQ/edit?gid=544975231#gid=544975231" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Weekly TPH Report</a></div>
-        <div style="margin-top:6px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/19m4VbRKVQV44ls2aIda8eVN83CuU652g0Hr2-kvQb4g/edit?gid=0#gid=0" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Zendesk Report</a></div>
+
+      <div class="section-label">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Reports & Trackers
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('reports-grid')">+ Add card</button>
       </div>
-      <div class="resource-block">
-        <div class="resource-block-title">US Calendar Week (Business Week Reference)</div>
-        <div class="resource-content editable" contenteditable="false">US-based calendar showing business/work weeks (CW) that the team follows. Includes moon phases and US holidays for reference.</div>
-        <div style="margin-top:10px"><a class="card-link" href="https://www.timeanddate.com/calendar/custom.html?country=1&wno=1&moon=on&hol=25" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Open US Calendar</a></div>
-      </div>
-      <div class="resource-block">
-        <div class="resource-block-title">QM Collecting Data</div>
-        <div class="resource-content editable" contenteditable="false">Customer Support Quality Management data collection sheet. Use to log QM scores and observations.</div>
-        <div style="margin-top:10px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/1I2VF9Rv1Q0GLB1vHEzrmW-L37CYgZLcv7gOoHe6SI9s/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open QM Sheet</a></div>
-      </div>
-      <div class="resource-block">
-        <div class="resource-block-title">Refund Issue & Exchange Reports</div>
-        <div class="resource-content editable" contenteditable="false">Weekly exchange report and refund issue calculation sheet. Used for reconciling refunds and FX.</div>
-        <div style="margin-top:10px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/1fhF87eS7XYJOzH3HfxMxx3bgu-84NkMqgLRf87NAWaE/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Refund Sheet</a></div>
+      <div class="cards-grid" id="reports-grid">
+
+        <div class="card" id="card-report-tph">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-report-tph')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-report-tph')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Weekly TPH</div>
+              <div class="card-desc editable" contenteditable="false">Ticket-per-hour tracking & Zendesk weekly report</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/13MJ4L0IghAwddZb6tHVwGEaKvVEcSJv6L1cdfLNFtQQ/edit?gid=544975231#gid=544975231" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Weekly TPH Report</a>
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/19m4VbRKVQV44ls2aIda8eVN83CuU652g0Hr2-kvQb4g/edit?gid=0#gid=0" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Zendesk Report</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-report-calendar">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-report-calendar')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-report-calendar')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">US Calendar Week</div>
+              <div class="card-desc editable" contenteditable="false">Business week (CW) reference with US holidays & moon phases</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://www.timeanddate.com/calendar/custom.html?country=1&wno=1&moon=on&hol=25" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open US Calendar</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-report-qm">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-report-qm')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-report-qm')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">QM Collecting Data</div>
+              <div class="card-desc editable" contenteditable="false">Quality Management scores and observations sheet</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1I2VF9Rv1Q0GLB1vHEzrmW-L37CYgZLcv7gOoHe6SI9s/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open QM Sheet</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-report-refund">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-report-refund')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-report-refund')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Refund & Exchange Reports</div>
+              <div class="card-desc editable" contenteditable="false">Weekly refund calculation & exchange reconciliation sheet</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1fhF87eS7XYJOzH3HfxMxx3bgu-84NkMqgLRf87NAWaE/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Refund Sheet</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -930,39 +989,122 @@
         <div class="page-title">Tools</div>
         <div class="page-desc">Operational tools for the support team.</div>
       </div>
-      <div class="resource-block">
-        <div class="resource-block-title">Problem Sheet</div>
-        <div class="resource-content editable" contenteditable="false">Folder for logging and tracking customer-reported issues. Add new problem sheets here when needed.</div>
-        <div style="margin-top:10px"><a class="card-link" href="https://drive.google.com/drive/folders/1BMY-rprfQyCxBw_e98-SibZ1a1i5SHzP" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Folder</a></div>
+
+      <div class="section-label">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          Tools & Platforms
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('tools-page-grid')">+ Add card</button>
       </div>
-      <div class="resource-block">
-        <div class="resource-block-title">BOE Supplier Shipment Sheet</div>
-        <div class="resource-content editable" contenteditable="false">Track supplier shipments from BOE. Check here for incoming stock and delivery timelines.</div>
-        <div style="margin-top:10px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/1woRENV7NKQ0yPSiP8kaLi4klgBViO2ZWlg2eue8FKAA/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open BOE Sheet</a></div>
-      </div>
-      <div class="resource-block">
-        <div class="resource-block-title">Macro Database</div>
-        <div class="resource-content editable" contenteditable="false">Master database for all support macros. Search and reference macros before composing responses.</div>
-        <div style="margin-top:10px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Macro Database</a></div>
-      </div>
-      <div class="resource-block">
-        <div class="resource-block-title">Zendesk Portals</div>
-        <div class="resource-content editable" contenteditable="false">Direct links to each brand's Zendesk support inbox. Open the portal for the store you're handling.</div>
-        <div style="margin-top:10px"><a class="card-link" href="https://brightfootwear.zendesk.com/agent/home/tickets?sort=newest" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Bright Footwear (US)</a></div>
-        <div style="margin-top:6px"><a class="card-link" href="https://purestepssupport.zendesk.com/agent/home/tickets" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Purestep (UK)</a></div>
-        <div style="margin-top:6px"><a class="card-link" href="https://feldluftsupport.zendesk.com/agent/home/tickets" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Feldluft (DE)</a></div>
-      </div>
-      <div class="resource-block">
-        <div class="resource-block-title">Store Websites</div>
-        <div class="resource-content editable" contenteditable="false">Live storefronts for all three brands. Use for checking product pages, prices, and customer-facing content.</div>
-        <div style="margin-top:10px"><a class="card-link" href="https://www.purestep.co.uk/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Purestep (UK)</a></div>
-        <div style="margin-top:6px"><a class="card-link" href="https://www.bright-footwear.com/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Bright Footwear (US)</a></div>
-        <div style="margin-top:6px"><a class="card-link" href="https://feldluft.de/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Feldluft (DE)</a></div>
-      </div>
-      <div class="resource-block">
-        <div class="resource-block-title">Rise AI — Loyalty & Rewards</div>
-        <div class="resource-content editable" contenteditable="false">Rise.ai platform for managing store credit, gift cards, loyalty programs, and referrals across all brands.</div>
-        <div style="margin-top:10px"><a class="card-link" href="https://platform.rise.ai/login?redirectTo=https%3A%2F%2Fplatform.rise.ai%2Faccount%2F2357a20a-c3cb-4f79-9414-7c775242e48a%2Frise-platform-account-dashboard%2Fhome" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Rise AI</a></div>
+      <div class="cards-grid" id="tools-page-grid">
+
+        <div class="card" id="card-tool-problem">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-tool-problem')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-tool-problem')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Problem Sheet</div>
+              <div class="card-desc editable" contenteditable="false">Folder for logging and tracking customer-reported issues</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://drive.google.com/drive/folders/1BMY-rprfQyCxBw_e98-SibZ1a1i5SHzP" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Folder</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-tool-boe">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-tool-boe')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-tool-boe')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">BOE Supplier Shipment</div>
+              <div class="card-desc editable" contenteditable="false">Incoming stock and delivery timeline tracker</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1woRENV7NKQ0yPSiP8kaLi4klgBViO2ZWlg2eue8FKAA/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open BOE Sheet</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-tool-macro">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-tool-macro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-tool-macro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Macro Database</div>
+              <div class="card-desc editable" contenteditable="false">Master database for all support response macros</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Macro Database</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-tool-zendesk">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-tool-zendesk')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-tool-zendesk')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Zendesk Portals</div>
+              <div class="card-desc editable" contenteditable="false">Direct inbox links for all three brands</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://brightfootwear.zendesk.com/agent/home/tickets?sort=newest" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Bright Footwear (US)</a>
+            <a class="card-link" href="https://purestepssupport.zendesk.com/agent/home/tickets" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Purestep (UK)</a>
+            <a class="card-link" href="https://feldluftsupport.zendesk.com/agent/home/tickets" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Feldluft (DE)</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-tool-stores">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-tool-stores')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-tool-stores')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Store Websites</div>
+              <div class="card-desc editable" contenteditable="false">Live storefronts for all three brands</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://www.purestep.co.uk/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Purestep (UK)</a>
+            <a class="card-link" href="https://www.bright-footwear.com/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Bright Footwear (US)</a>
+            <a class="card-link" href="https://feldluft.de/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Feldluft (DE)</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-tool-rise">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-tool-rise')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-tool-rise')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Rise AI</div>
+              <div class="card-desc editable" contenteditable="false">Loyalty, store credit & gift card platform</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://platform.rise.ai/login?redirectTo=https%3A%2F%2Fplatform.rise.ai%2Faccount%2F2357a20a-c3cb-4f79-9414-7c775242e48a%2Frise-platform-account-dashboard%2Fhome" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Rise AI</a>
+          </div>
+        </div>
+
       </div>
     </div>
 

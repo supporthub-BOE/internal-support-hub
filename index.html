@@ -42,7 +42,6 @@
     min-height: 100vh;
   }
 
-  /* ── TOPBAR ── */
   .topbar {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -101,10 +100,8 @@
   }
   .btn-secondary:hover { background: var(--surface2); color: var(--text); }
 
-  /* ── LAYOUT ── */
   .layout { display: flex; min-height: calc(100vh - 54px); }
 
-  /* ── SIDEBAR ── */
   .sidebar {
     width: 210px;
     min-width: 210px;
@@ -139,7 +136,6 @@
   .nav-item.active { color: var(--teal-dark); border-left-color: var(--teal); background: var(--teal-light); }
   .nav-item.active svg { opacity: 1; }
 
-  /* ── MAIN CONTENT ── */
   .content { flex: 1; padding: 28px 32px; overflow-y: auto; max-width: 1100px; }
 
   .page { display: none; }
@@ -149,7 +145,6 @@
   .page-title { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
   .page-desc { font-size: 13px; color: var(--text2); }
 
-  /* ── SECTION HEADER ── */
   .section-label {
     display: flex;
     align-items: center;
@@ -185,7 +180,6 @@
   .edit-mode .btn-add-card { opacity: 1; pointer-events: all; }
   .btn-add-card:hover { background: var(--teal-light); }
 
-  /* ── CARDS GRID ── */
   .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -193,7 +187,6 @@
     margin-bottom: 4px;
   }
 
-  /* ── CARD ── */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -233,7 +226,6 @@
   .card-link:hover { color: var(--teal-dark); }
   .card-link svg { width: 13px; height: 13px; flex-shrink: 0; opacity: 0.7; }
 
-  /* ── EDIT MODE STYLES ── */
   .card-edit-actions {
     position: absolute;
     top: 10px; right: 10px;
@@ -265,7 +257,6 @@
   .edit-mode .editable:hover { background: var(--surface2); }
   .edit-mode .editable:focus { background: #fff; box-shadow: 0 0 0 2px var(--teal); }
 
-  /* Coming soon placeholder */
   .coming-soon-card {
     background: var(--bg);
     border: 1px dashed var(--border2);
@@ -279,7 +270,6 @@
   }
   .coming-soon-card svg { width: 18px; height: 18px; opacity: 0.5; }
 
-  /* ── MODAL ── */
   .modal-backdrop {
     display: none;
     position: fixed; inset: 0;
@@ -351,10 +341,8 @@
   }
   .btn-cancel:hover { background: var(--bg); }
 
-  /* ── DIVIDER ── */
   .divider { height: 1px; background: var(--border); margin: 28px 0 4px; }
 
-  /* ── RESOURCE PAGES ── */
   .resource-block {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -380,7 +368,6 @@
   .edit-mode .resource-content:hover { border-color: var(--teal); }
   .edit-mode .resource-content:focus { outline: none; background: #fff; border: 1px solid var(--teal); }
 
-  /* ── BADGE ── */
   .badge {
     display: inline-flex; align-items: center;
     font-size: 10.5px; font-weight: 600;
@@ -393,7 +380,6 @@
 </head>
 <body>
 
-<!-- TOPBAR -->
 <header class="topbar">
   <div class="logo">
     <div class="logo-icon">
@@ -413,10 +399,8 @@
   </div>
 </header>
 
-<!-- LAYOUT -->
 <div class="layout">
 
-  <!-- SIDEBAR -->
   <nav class="sidebar">
     <div class="nav-group">
       <div class="nav-group-label">Overview</div>
@@ -476,7 +460,6 @@
     </div>
   </nav>
 
-  <!-- CONTENT -->
   <main class="content">
 
     <!-- DASHBOARD -->
@@ -651,6 +634,23 @@
           </div>
         </div>
 
+        <div class="card" id="card-schedule">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-schedule')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-schedule')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Support Schedule & Phone Assignment</div>
+              <div class="card-desc editable" contenteditable="false">Team schedule and phone line assignments</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1HwgrKsfyhM-7yguzbEMKmPuLeQ1AssbD_wVIa2RTOso/edit?gid=2053878414#gid=2053878414" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Schedule</a>
+          </div>
+        </div>
+
         <div class="card" id="card-macro">
           <div class="card-edit-actions">
             <button class="btn-icon" title="Edit" onclick="openEditCard('card-macro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
@@ -667,6 +667,139 @@
             <a class="card-link" href="https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Macro Database</a>
           </div>
         </div>
+      </div>
+
+      <!-- RESOURCES SECTION -->
+      <div class="section-label" style="margin-top:24px">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          Resources
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('resources-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="resources-grid">
+
+        <div class="card" id="card-res-inventory">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-res-inventory')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-res-inventory')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Product Inventory</div>
+              <div class="card-desc editable" contenteditable="false">Stock levels, OOS reports & inventory masterlist</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1zozs6svX-py0R4HCM0NUge6Uwdq2YYcq8xS5vHVSQMc/edit?gid=865421436#gid=865421436" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Inventory Masterlist</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-res-sizing">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-res-sizing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-res-sizing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 3H3v7h18V3zM3 14h5v7H3zM10 14h11v7H10z"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Materials & Sizing</div>
+              <div class="card-desc editable" contenteditable="false">Size guides, materials, suppliers & EU/UK/US conversions</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1wy_d_Zed7-mtibbs8uuNObuW-dIiVkDSfCLrjhedLSU/edit?gid=0#gid=0" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Cheat Sheet</a>
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1uXgqk_nMDc89oROLl8rFbNGKs7VAkVoCH91dnr05jiw/edit?gid=932850357#gid=932850357" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Size-Width Guide</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-res-unfulfilled">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-res-unfulfilled')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-res-unfulfilled')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Daily Unfulfilled</div>
+              <div class="card-desc editable" contenteditable="false">Daily unfulfilled order reports folder</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://drive.google.com/drive/folders/1Nv9Oaz2C3-F0Ng3qw_N45BJxKA3k2dM3" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Reports Folder</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-res-supplychain">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-res-supplychain')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-res-supplychain')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Supply Chain</div>
+              <div class="card-desc editable" contenteditable="false">SKU sync sheet & materials cheat sheet</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1pJCGqg-VdWZzKAEvzwlPYmoigStMbob4eufZLpYRW2A/edit?gid=899936992#gid=899936992" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>SKU Sync Sheet</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-res-sops">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-res-sops')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-res-sops')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">SOPs</div>
+              <div class="card-desc editable" contenteditable="false">Phone support, supplier SLA & CS process board</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://miro.com/app/board/uXjVKUEGSnQ=/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>CS Process Board</a>
+            <a class="card-link" href="https://docs.google.com/document/d/1jV_e_HSOalSA3p4twXrivTUg3J9fJwppQke97GvtBsE/edit?tab=t.0" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Supplier SLA</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-res-onboarding">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-res-onboarding')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-res-onboarding')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Onboarding</div>
+              <div class="card-desc editable" contenteditable="false">CS onboarding guide for new team members</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/document/d/1vGGqwLTf98PbPDSx9CpLVwPrry8gDkoXraF0F6cc858/edit?tab=t.0" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>CS Onboarding Guide</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-res-faqs">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-res-faqs')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-res-faqs')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">FAQs</div>
+              <div class="card-desc editable" contenteditable="false">Frequently asked questions reference folder</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://drive.google.com/drive/folders/1NRUqgwAW2CupZC6AE7RrggWmvMY5e2tV" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open FAQs Folder</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -716,25 +849,283 @@
       </div>
     </div>
 
-    <!-- RESOURCE PAGES (editable content blocks) -->
+    <!-- RESOURCE PAGES -->
     <div class="page" id="page-inventory">
-      <div class="page-header"><div class="page-title">Product Inventory</div><div class="page-desc">Current inventory listings and stock levels.</div></div>
-      <div class="resource-block"><div class="resource-block-title">Overview</div><div class="resource-content editable" contenteditable="false">Add your product inventory notes, links, or embed details here. Click "Edit" in the top bar to start editing.</div></div>
+      <div class="page-header">
+        <div class="page-title">Product Inventory</div>
+        <div class="page-desc">Current inventory levels, OOS reports, and stock tracking.</div>
+      </div>
+
+      <div class="section-label">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          Stock Reports
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('inventory-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="inventory-grid">
+
+        <div class="card" id="card-inventory-masterlist">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-inventory-masterlist')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-inventory-masterlist')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Inventory Masterlist</div>
+              <div class="card-desc editable" contenteditable="false">Full stock tracker — all models, updated 3x a week (Mon, Wed, Fri)</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1zozs6svX-py0R4HCM0NUge6Uwdq2YYcq8xS5vHVSQMc/edit?gid=865421436#gid=865421436" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Masterlist
+            </a>
+          </div>
+        </div>
+
+        <div class="card" id="card-inventory-oos">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-inventory-oos')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-inventory-oos')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon coral">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">OOS Report</div>
+              <div class="card-desc editable" contenteditable="false">Out-of-stock items — current stock, on the way & need to procure</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1zozs6svX-py0R4HCM0NUge6Uwdq2YYcq8xS5vHVSQMc/edit#gid=0" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open OOS Report
+            </a>
+          </div>
+        </div>
+
+        <div class="card" id="card-inventory-polaris">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-inventory-polaris')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-inventory-polaris')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Polaris Stock Tracker</div>
+              <div class="card-desc editable" contenteditable="false">Per size / color stock levels, daily sales & days remaining</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1zozs6svX-py0R4HCM0NUge6Uwdq2YYcq8xS5vHVSQMc/edit#gid=865421436" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Polaris Tracker
+            </a>
+          </div>
+        </div>
+
+        <div class="card" id="card-inventory-hommies">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-inventory-hommies')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-inventory-hommies')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Hommies Stock Tracker</div>
+              <div class="card-desc editable" contenteditable="false">Per size / color stock levels, daily sales & days remaining</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1zozs6svX-py0R4HCM0NUge6Uwdq2YYcq8xS5vHVSQMc/edit" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Hommies Tracker
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="page" id="page-sizing">
-      <div class="page-header"><div class="page-title">Product Materials & Sizing</div><div class="page-desc">Size guides and material specifications.</div></div>
-      <div class="resource-block"><div class="resource-block-title">Size Guide</div><div class="resource-content editable" contenteditable="false">Add sizing charts, material details, and product specifications here. Click "Edit" to update.</div></div>
+      <div class="page-header">
+        <div class="page-title">Product Materials & Sizing</div>
+        <div class="page-desc">Size guides, material specifications, and per-model measurements.</div>
+      </div>
+
+      <div class="section-label">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M21 3H3v7h18V3zM3 14h5v7H3zM10 14h11v7H10z"/></svg>
+          Size References
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('sizing-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="sizing-grid">
+
+        <div class="card" id="card-sizing-guide">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-sizing-guide')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-sizing-guide')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 3H3v7h18V3zM3 14h5v7H3zM10 14h11v7H10z"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Size-Width Guide</div>
+              <div class="card-desc editable" contenteditable="false">Per-model size charts — insole length, width, EU/UK/US conversions for all shoe models</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1uXgqk_nMDc89oROLl8rFbNGKs7VAkVoCH91dnr05jiw/edit?gid=932850357#gid=932850357" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Sizing Guide
+            </a>
+          </div>
+        </div>
+
+        <div class="card" id="card-cheatsheet-sizing">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-cheatsheet-sizing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-cheatsheet-sizing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Materials & Sizing Cheat Sheet</div>
+              <div class="card-desc editable" contenteditable="false">All shoe models — materials, suppliers, colors & EU sizes</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1wy_d_Zed7-mtibbs8uuNObuW-dIiVkDSfCLrjhedLSU/edit?gid=0#gid=0" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Cheat Sheet
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="page" id="page-unfulfilled">
-      <div class="page-header"><div class="page-title">Daily Unfulfilled</div><div class="page-desc">Track daily unfulfilled orders.</div></div>
-      <div class="resource-block"><div class="resource-block-title">Today's Unfulfilled</div><div class="resource-content editable" contenteditable="false">Paste or type today's unfulfilled order list here. Update daily. Click "Edit" to start.</div></div>
+      <div class="page-header">
+        <div class="page-title">Daily Unfulfilled</div>
+        <div class="page-desc">Track and access daily unfulfilled order reports.</div>
+      </div>
+
+      <div class="section-label">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Reports
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('unfulfilled-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="unfulfilled-grid">
+        <div class="card" id="card-unfulfilled-folder">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-unfulfilled-folder')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-unfulfilled-folder')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Daily Unfulfilled Reports</div>
+              <div class="card-desc editable" contenteditable="false">Google Drive folder — all daily unfulfilled order reports</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://drive.google.com/drive/folders/1Nv9Oaz2C3-F0Ng3qw_N45BJxKA3k2dM3" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Reports Folder
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- SUPPLY CHAIN PAGE — updated with card -->
     <div class="page" id="page-supplychain">
-      <div class="page-header"><div class="page-title">Supply Chain Updates</div><div class="page-desc">Latest updates on supply chain status.</div></div>
-      <div class="resource-block"><div class="resource-block-title">Latest Updates</div><div class="resource-content editable" contenteditable="false">Post supply chain updates, delays, or alerts here. Click "Edit" to add content.</div></div>
+      <div class="page-header">
+        <div class="page-title">Supply Chain Updates</div>
+        <div class="page-desc">Latest updates on supply chain status and product references.</div>
+      </div>
+
+      <div class="section-label">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M21 3H3v7h18V3zM3 14h5v7H3zM10 14h11v7H10z"/></svg>
+          Quick Reference
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('supplychain-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="supplychain-grid">
+        <div class="card" id="card-sync">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-sync')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-sync')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 013.51 15"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">SKU Synchronization Sheet</div>
+              <div class="card-desc editable" contenteditable="false">Product SKU sync — size charts, ERP names & Shopify alignment</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1pJCGqg-VdWZzKAEvzwlPYmoigStMbob4eufZLpYRW2A/edit?gid=899936992#gid=899936992" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Sync Sheet
+            </a>
+          </div>
+        </div>
+
+        <div class="card" id="card-cheatsheet">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-cheatsheet')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-cheatsheet')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 3H3v7h18V3zM3 14h5v7H3zM10 14h11v7H10z"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Materials & Sizing Cheat Sheet</div>
+              <div class="card-desc editable" contenteditable="false">All shoe models — materials, suppliers, colors & EU sizes</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1wy_d_Zed7-mtibbs8uuNObuW-dIiVkDSfCLrjhedLSU/edit?gid=0#gid=0" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Cheat Sheet
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:24px">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Latest Updates
+        </div>
+      </div>
+      <div class="resource-block">
+        <div class="resource-block-title">Updates & Alerts</div>
+        <div class="resource-content editable" contenteditable="false">Post supply chain updates, delays, or alerts here. Click "Edit" to add content.</div>
+      </div>
     </div>
 
     <div class="page" id="page-promos">
@@ -743,30 +1134,212 @@
     </div>
 
     <div class="page" id="page-onboarding">
-      <div class="page-header"><div class="page-title">Onboarding Docs</div><div class="page-desc">Resources for new team members.</div></div>
-      <div class="resource-block"><div class="resource-block-title">Getting Started</div><div class="resource-content editable" contenteditable="false">Welcome to the support team! Add onboarding steps, tool access instructions, and first-week checklist here. Click "Edit" to customize.</div></div>
+      <div class="page-header">
+        <div class="page-title">Onboarding Docs</div>
+        <div class="page-desc">Resources and guides for new CS team members.</div>
+      </div>
+
+      <div class="section-label">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          Getting Started
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('onboarding-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="onboarding-grid">
+
+        <div class="card" id="card-onboarding-guide">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-onboarding-guide')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-onboarding-guide')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">CS Onboarding Guide</div>
+              <div class="card-desc editable" contenteditable="false">Complete guide for new CS team members — tools, access, policies, refunds, invoicing & communication</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/document/d/1vGGqwLTf98PbPDSx9CpLVwPrry8gDkoXraF0F6cc858/edit?tab=t.0#heading=h.xtgrrvr92nkq" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Onboarding Guide
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-label" style="margin-top:24px">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Checklist
+        </div>
+      </div>
+      <div class="resource-block">
+        <div class="resource-block-title">Getting Started Notes</div>
+        <div class="resource-content editable" contenteditable="false">Add any additional onboarding notes, first-week tasks, or team-specific reminders here. Click "Edit" to customize.</div>
+      </div>
     </div>
 
     <div class="page" id="page-sops">
-      <div class="page-header"><div class="page-title">SOPs</div><div class="page-desc">Standard Operating Procedures.</div></div>
-      <div class="resource-block"><div class="resource-block-title">Standard Procedures</div><div class="resource-content editable" contenteditable="false">Add your SOPs here. You can organize by topic — e.g. Refunds SOP, Dispute SOP, Escalation SOP. Click "Edit" to start writing.</div></div>
+      <div class="page-header">
+        <div class="page-title">SOPs</div>
+        <div class="page-desc">Standard Operating Procedures for the support team.</div>
+      </div>
+
+      <div class="section-label">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Procedures
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('sops-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="sops-grid">
+
+        <div class="card" id="card-sop-miro">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-sop-miro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-sop-miro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">CS Process Board</div>
+              <div class="card-desc editable" contenteditable="false">Visual SOP flowchart — CS workflows and process overview on Miro</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://miro.com/app/board/uXjVKUEGSnQ=/" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Miro Board
+            </a>
+          </div>
+        </div>
+
+        <div class="card" id="card-sop-supplier">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-sop-supplier')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-sop-supplier')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Supplier SOP</div>
+              <div class="card-desc editable" contenteditable="false">Service Level Agreement — fulfillment responsibilities, order/quality/logistics issues & shared costs</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/document/d/1jV_e_HSOalSA3p4twXrivTUg3J9fJwppQke97GvtBsE/edit?tab=t.0" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Supplier SOP
+            </a>
+          </div>
+        </div>
+
+        <div class="card" id="card-sop-phone">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-sop-phone')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-sop-phone')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .82h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Phone Support SOPs</div>
+              <div class="card-desc editable" contenteditable="false">Standard procedures and guidelines for handling phone support calls</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://drive.google.com/drive/folders/1JyGxhVNwWCJeJibb8yqS5vxiCUrjaM-r" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Phone Support Folder
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-label" style="margin-top:24px">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Written SOPs
+        </div>
+      </div>
+      <div class="resource-block">
+        <div class="resource-block-title">Standard Procedures</div>
+        <div class="resource-content editable" contenteditable="false">Add your SOPs here. You can organize by topic — e.g. Refunds SOP, Dispute SOP, Escalation SOP. Click "Edit" to start writing.</div>
+      </div>
     </div>
 
     <div class="page" id="page-faqs">
-      <div class="page-header"><div class="page-title">FAQs</div><div class="page-desc">Frequently asked questions and answers.</div></div>
-      <div class="resource-block"><div class="resource-block-title">Common Questions</div><div class="resource-content editable" contenteditable="false">Q: How do I process a refund?
+      <div class="page-header">
+        <div class="page-title">FAQs</div>
+        <div class="page-desc">Frequently asked questions and answers for the CS team.</div>
+      </div>
+
+      <div class="section-label">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Resources
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('faqs-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="faqs-grid">
+
+        <div class="card" id="card-faqs-folder">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-faqs-folder')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-faqs-folder')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div>
+              <div class="card-title editable" contenteditable="false">FAQs Folder</div>
+              <div class="card-desc editable" contenteditable="false">Google Drive folder — all FAQ documents and reference materials</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://drive.google.com/drive/folders/1NRUqgwAW2CupZC6AE7RrggWmvMY5e2tV" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open FAQs Folder
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-label" style="margin-top:24px">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Written FAQs
+        </div>
+      </div>
+      <div class="resource-block">
+        <div class="resource-block-title">Common Questions</div>
+        <div class="resource-content editable" contenteditable="false">Q: How do I process a refund?
 A: Fill in the answer here.
 
 Q: Where do I log a dispute?
 A: Fill in the answer here.
 
-Click "Edit" to add more FAQs.</div></div>
+Click "Edit" to add more FAQs.</div>
+      </div>
     </div>
 
   </main>
 </div>
 
-<!-- MODAL: Add/Edit Card -->
+<!-- MODAL -->
 <div class="modal-backdrop" id="modal">
   <div class="modal">
     <div class="modal-title" id="modal-title">Add card</div>

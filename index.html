@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --border: rgba(0,0,0,0.08);
+    --border2: rgba(0,0,0,0.14);
+    --text: #1a1916;
+    --text2: #6b6a64;
+    --text3: #9d9c96;
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --teal-dark: #0F6E56;
+    --blue-light: #E6F1FB;
+    --blue: #185FA5;
+    --amber-light: #FAEEDA;
+    --amber: #854F0B;
+    --coral-light: #FAECE7;
+    --coral: #993C1D;
+    --purple-light: #EEEDFE;
+    --purple: #534AB7;
+    --green-light: #EAF3DE;
+    --green: #3B6D11;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 30px; height: 30px;
+    background: var(--teal);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 15px;
+  }
+  .topbar-actions { display: flex; align-items: center; gap: 10px; }
+  .btn-edit {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 7px 14px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-edit:hover { background: var(--teal-dark); }
+  .btn-secondary {
+    display: flex; align-items: center; gap: 6px;
+    background: transparent;
+    color: var(--text2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 7px 14px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-secondary:hover { background: var(--surface2); color: var(--text); }
+
+  /* ── LAYOUT ── */
+  .layout { display: flex; min-height: calc(100vh - 54px); }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: 210px;
+    min-width: 210px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 20px 0;
+    overflow-y: auto;
+  }
+  .nav-group { margin-bottom: 6px; }
+  .nav-group-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 8px 18px 4px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 18px;
+    font-size: 13px;
+    color: var(--text2);
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    transition: all 0.12s;
+    user-select: none;
+  }
+  .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.75; }
+  .nav-item:hover { background: var(--bg); color: var(--text); }
+  .nav-item.active { color: var(--teal-dark); border-left-color: var(--teal); background: var(--teal-light); }
+  .nav-item.active svg { opacity: 1; }
+
+  /* ── MAIN CONTENT ── */
+  .content { flex: 1; padding: 28px 32px; overflow-y: auto; max-width: 1100px; }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .page-header { margin-bottom: 24px; }
+  .page-title { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .page-desc { font-size: 13px; color: var(--text2); }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 24px 0 12px;
+  }
+  .section-label-text {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text3);
+  }
+  .section-label-text svg { width: 14px; height: 14px; }
+  .btn-add-card {
+    display: flex; align-items: center; gap: 5px;
+    background: transparent;
+    color: var(--teal-dark);
+    border: 1px dashed var(--teal);
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .edit-mode .btn-add-card { opacity: 1; pointer-events: all; }
+  .btn-add-card:hover { background: var(--teal-light); }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    position: relative;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .card:hover { border-color: var(--border2); }
+  .card-header { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 10px; }
+  .card-icon {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-icon svg { width: 17px; height: 17px; }
+  .card-icon.teal { background: var(--teal-light); color: var(--teal-dark); }
+  .card-icon.blue { background: var(--blue-light); color: var(--blue); }
+  .card-icon.amber { background: var(--amber-light); color: var(--amber); }
+  .card-icon.coral { background: var(--coral-light); color: var(--coral); }
+  .card-icon.purple { background: var(--purple-light); color: var(--purple); }
+  .card-icon.green { background: var(--green-light); color: var(--green); }
+
+  .card-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .card-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .card-links { display: flex; flex-direction: column; gap: 5px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+  .card-link {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12.5px;
+    color: var(--blue);
+    text-decoration: none;
+    padding: 2px 0;
+    border-radius: 4px;
+    transition: color 0.12s;
+  }
+  .card-link:hover { color: var(--teal-dark); }
+  .card-link svg { width: 13px; height: 13px; flex-shrink: 0; opacity: 0.7; }
+
+  /* ── EDIT MODE STYLES ── */
+  .card-edit-actions {
+    position: absolute;
+    top: 10px; right: 10px;
+    display: none;
+    gap: 4px;
+  }
+  .edit-mode .card-edit-actions { display: flex; }
+  .btn-icon {
+    width: 26px; height: 26px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--text2);
+    transition: all 0.12s;
+  }
+  .btn-icon:hover { background: var(--bg); color: var(--text); }
+  .btn-icon.danger:hover { background: #FCEBEB; color: #A32D2D; border-color: #F7C1C1; }
+  .btn-icon svg { width: 13px; height: 13px; }
+
+  .editable { outline: none; }
+  .edit-mode .editable {
+    background: var(--bg);
+    border-radius: 4px;
+    padding: 1px 4px;
+    cursor: text;
+  }
+  .edit-mode .editable:hover { background: var(--surface2); }
+  .edit-mode .editable:focus { background: #fff; box-shadow: 0 0 0 2px var(--teal); }
+
+  /* Coming soon placeholder */
+  .coming-soon-card {
+    background: var(--bg);
+    border: 1px dashed var(--border2);
+    border-radius: var(--radius);
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text3);
+    font-size: 13px;
+  }
+  .coming-soon-card svg { width: 18px; height: 18px; opacity: 0.5; }
+
+  /* ── MODAL ── */
+  .modal-backdrop {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px;
+    width: 460px;
+    max-width: 95vw;
+    border: 1px solid var(--border);
+  }
+  .modal-title { font-size: 16px; font-weight: 600; margin-bottom: 18px; }
+  .form-group { margin-bottom: 14px; }
+  .form-label { font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 5px; display: block; }
+  .form-input {
+    width: 100%;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--surface);
+    transition: border-color 0.15s;
+  }
+  .form-input:focus { outline: none; border-color: var(--teal); }
+  .form-select {
+    width: 100%;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--surface);
+  }
+  .modal-links-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+  .modal-link-row { display: flex; gap: 6px; align-items: center; }
+  .modal-link-row .form-input { flex: 1; }
+  .btn-remove-link {
+    background: none; border: none; color: var(--text3); cursor: pointer; padding: 4px;
+    border-radius: 4px; display: flex;
+  }
+  .btn-remove-link:hover { color: #A32D2D; background: #FCEBEB; }
+  .btn-add-link {
+    background: none; border: 1px dashed var(--border2); color: var(--text2);
+    border-radius: var(--radius-sm); padding: 6px 10px; font-size: 12px;
+    font-family: 'DM Sans', sans-serif; cursor: pointer; width: 100%; margin-top: 4px;
+    transition: all 0.12s;
+  }
+  .btn-add-link:hover { border-color: var(--teal); color: var(--teal-dark); }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+  .btn-save {
+    background: var(--teal); color: #fff; border: none;
+    border-radius: var(--radius-sm); padding: 8px 20px; font-size: 13px;
+    font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer;
+  }
+  .btn-save:hover { background: var(--teal-dark); }
+  .btn-cancel {
+    background: transparent; color: var(--text2); border: 1px solid var(--border2);
+    border-radius: var(--radius-sm); padding: 8px 16px; font-size: 13px;
+    font-family: 'DM Sans', sans-serif; cursor: pointer;
+  }
+  .btn-cancel:hover { background: var(--bg); }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--border); margin: 28px 0 4px; }
+
+  /* ── RESOURCE PAGES ── */
+  .resource-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .resource-block-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .resource-content {
+    font-size: 13.5px;
+    color: var(--text2);
+    line-height: 1.75;
+    min-height: 40px;
+    white-space: pre-wrap;
+  }
+  .edit-mode .resource-content {
+    background: var(--bg);
+    border-radius: 6px;
+    padding: 10px 12px;
+    cursor: text;
+    border: 1px dashed var(--border2);
+  }
+  .edit-mode .resource-content:hover { border-color: var(--teal); }
+  .edit-mode .resource-content:focus { outline: none; background: #fff; border: 1px solid var(--teal); }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-flex; align-items: center;
+    font-size: 10.5px; font-weight: 600;
+    padding: 2px 8px; border-radius: 100px;
+    margin-left: 6px;
+  }
+  .badge.weekly { background: var(--amber-light); color: var(--amber); }
+  .badge.new { background: var(--teal-light); color: var(--teal-dark); }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/><path d="M3 10h18M10 17v2m4-2v2"/></svg>
+    </div>
+    Support Hub
+  </div>
+  <div class="topbar-actions">
+    <button class="btn-secondary" id="exportBtn" onclick="exportHTML()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      Export
+    </button>
+    <button class="btn-edit" id="editToggle" onclick="toggleEditMode()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Edit
+    </button>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="nav-group">
+      <div class="nav-group-label">Overview</div>
+      <div class="nav-item active" onclick="showPage('dashboard', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Reports</div>
+      <div class="nav-item" onclick="showPage('reports', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Reports
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Tools</div>
+      <div class="nav-item" onclick="showPage('tools', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Tools
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Resources</div>
+      <div class="nav-item" onclick="showPage('inventory', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        Product Inventory
+      </div>
+      <div class="nav-item" onclick="showPage('sizing', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 3H3v7h18V3zM3 14h5v7H3zM10 14h11v7H10z"/></svg>
+        Materials & Sizing
+      </div>
+      <div class="nav-item" onclick="showPage('unfulfilled', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Daily Unfulfilled
+      </div>
+      <div class="nav-item" onclick="showPage('supplychain', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Supply Chain
+      </div>
+      <div class="nav-item" onclick="showPage('promos', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        Promos
+      </div>
+      <div class="nav-item" onclick="showPage('onboarding', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Onboarding
+      </div>
+      <div class="nav-item" onclick="showPage('sops', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        SOPs
+      </div>
+      <div class="nav-item" onclick="showPage('faqs', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        FAQs
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div class="page-title">Dashboard</div>
+        <div class="page-desc">Quick access to all reports, tools, and team resources.</div>
+      </div>
+
+      <div class="section-label">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Reports
+          <span class="badge weekly">Weekly</span>
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('reports-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="reports-grid">
+        <div class="card" id="card-tph">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-tph')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-tph')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Weekly TPH</div>
+              <div class="card-desc editable" contenteditable="false">Zendesk ticket-per-hour tracking</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/19m4VbRKVQV44ls2aIda8eVN83CuU652g0Hr2-kvQb4g/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Zendesk Report</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-qm">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-qm')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-qm')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">QM Collecting Data</div>
+              <div class="card-desc editable" contenteditable="false">Customer Support Quality Management</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1I2VF9Rv1Q0GLB1vHEzrmW-L37CYgZLcv7gOoHe6SI9s/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>QM Data Sheet</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-refund">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-refund')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-refund')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Refund / Exchange</div>
+              <div class="card-desc editable" contenteditable="false">Refund issue calculation & exchange reports</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1fhF87eS7XYJOzH3HfxMxx3bgu-84NkMqgLRf87NAWaE/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Refund Calculation</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:24px">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Disputes
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('disputes-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="disputes-grid">
+        <div class="card" id="card-klarna">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-klarna')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-klarna')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Klarna / Airwallex</div>
+              <div class="card-desc editable" contenteditable="false">Weekly dispute data 2024</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1WoNSJy3mr4uaPgdJ0_TvUI9e1S86DoVxTPVZ_czPVlQ/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Airwallex Weekly Report</a>
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/13J04dWvsA9rx4rfStAz1t3pI6mB1EqrFGaSITrBGaug/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Klarna All Transactions</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-shopify">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-shopify')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-shopify')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Shopify Payments</div>
+              <div class="card-desc editable" contenteditable="false">Won & loss dispute tracking</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1hW8ua1w2MffnR1Xm6LxppMxrbp-bnFgDOWkl7CoB7M8/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Shopify Won & Loss</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-stripe">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-stripe')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-stripe')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Stripe Disputes</div>
+              <div class="card-desc editable" contenteditable="false">Won & loss + dispute report (Svenja)</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/10YJqVpjUsgYqeTISgKy1Zvrk7-r1_Zq4ibswuLg5fpQ/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Stripe Won & Loss</a>
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1WU-KkWBHGSg4HZmiayQknwdQZMId4p3kNCOgMt6eWbM/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Stripe Dispute Report</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:24px">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          Tools
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('tools-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="tools-grid">
+        <div class="card" id="card-problem">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-problem')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-problem')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Problem Sheet</div>
+              <div class="card-desc editable" contenteditable="false">Issue tracking & problem logs</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://drive.google.com/drive/folders/1BMY-rprfQyCxBw_e98-SibZ1a1i5SHzP" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Folder</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-boe">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-boe')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-boe')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">BOE Supplier Shipment</div>
+              <div class="card-desc editable" contenteditable="false">Supplier shipment tracking</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1woRENV7NKQ0yPSiP8kaLi4klgBViO2ZWlg2eue8FKAA/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>BOE Sheet</a>
+          </div>
+        </div>
+
+        <div class="card" id="card-macro">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-macro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-macro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Macro Database</div>
+              <div class="card-desc editable" contenteditable="false">Macros reference & management</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Macro Database</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORTS PAGE -->
+    <div class="page" id="page-reports">
+      <div class="page-header">
+        <div class="page-title">Reports</div>
+        <div class="page-desc">All weekly and ongoing reports.</div>
+      </div>
+      <div class="resource-block">
+        <div class="resource-block-title">Weekly TPH — Zendesk</div>
+        <div class="resource-content editable" contenteditable="false">Track tickets per hour via the Zendesk Report spreadsheet. Updated every week by the team lead.</div>
+        <div style="margin-top:10px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/19m4VbRKVQV44ls2aIda8eVN83CuU652g0Hr2-kvQb4g/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Zendesk Report</a></div>
+      </div>
+      <div class="resource-block">
+        <div class="resource-block-title">QM Collecting Data</div>
+        <div class="resource-content editable" contenteditable="false">Customer Support Quality Management data collection sheet. Use to log QM scores and observations.</div>
+        <div style="margin-top:10px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/1I2VF9Rv1Q0GLB1vHEzrmW-L37CYgZLcv7gOoHe6SI9s/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open QM Sheet</a></div>
+      </div>
+      <div class="resource-block">
+        <div class="resource-block-title">Refund Issue & Exchange Reports</div>
+        <div class="resource-content editable" contenteditable="false">Weekly exchange report and refund issue calculation sheet. Used for reconciling refunds and FX.</div>
+        <div style="margin-top:10px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/1fhF87eS7XYJOzH3HfxMxx3bgu-84NkMqgLRf87NAWaE/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Refund Sheet</a></div>
+      </div>
+    </div>
+
+    <!-- TOOLS PAGE -->
+    <div class="page" id="page-tools">
+      <div class="page-header">
+        <div class="page-title">Tools</div>
+        <div class="page-desc">Operational tools for the support team.</div>
+      </div>
+      <div class="resource-block">
+        <div class="resource-block-title">Problem Sheet</div>
+        <div class="resource-content editable" contenteditable="false">Folder for logging and tracking customer-reported issues. Add new problem sheets here when needed.</div>
+        <div style="margin-top:10px"><a class="card-link" href="https://drive.google.com/drive/folders/1BMY-rprfQyCxBw_e98-SibZ1a1i5SHzP" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Folder</a></div>
+      </div>
+      <div class="resource-block">
+        <div class="resource-block-title">BOE Supplier Shipment Sheet</div>
+        <div class="resource-content editable" contenteditable="false">Track supplier shipments from BOE. Check here for incoming stock and delivery timelines.</div>
+        <div style="margin-top:10px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/1woRENV7NKQ0yPSiP8kaLi4klgBViO2ZWlg2eue8FKAA/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open BOE Sheet</a></div>
+      </div>
+      <div class="resource-block">
+        <div class="resource-block-title">Macro Database</div>
+        <div class="resource-content editable" contenteditable="false">Master database for all support macros. Search and reference macros before composing responses.</div>
+        <div style="margin-top:10px"><a class="card-link" href="https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Macro Database</a></div>
+      </div>
+    </div>
+
+    <!-- RESOURCE PAGES (editable content blocks) -->
+    <div class="page" id="page-inventory">
+      <div class="page-header"><div class="page-title">Product Inventory</div><div class="page-desc">Current inventory listings and stock levels.</div></div>
+      <div class="resource-block"><div class="resource-block-title">Overview</div><div class="resource-content editable" contenteditable="false">Add your product inventory notes, links, or embed details here. Click "Edit" in the top bar to start editing.</div></div>
+    </div>
+
+    <div class="page" id="page-sizing">
+      <div class="page-header"><div class="page-title">Product Materials & Sizing</div><div class="page-desc">Size guides and material specifications.</div></div>
+      <div class="resource-block"><div class="resource-block-title">Size Guide</div><div class="resource-content editable" contenteditable="false">Add sizing charts, material details, and product specifications here. Click "Edit" to update.</div></div>
+    </div>
+
+    <div class="page" id="page-unfulfilled">
+      <div class="page-header"><div class="page-title">Daily Unfulfilled</div><div class="page-desc">Track daily unfulfilled orders.</div></div>
+      <div class="resource-block"><div class="resource-block-title">Today's Unfulfilled</div><div class="resource-content editable" contenteditable="false">Paste or type today's unfulfilled order list here. Update daily. Click "Edit" to start.</div></div>
+    </div>
+
+    <div class="page" id="page-supplychain">
+      <div class="page-header"><div class="page-title">Supply Chain Updates</div><div class="page-desc">Latest updates on supply chain status.</div></div>
+      <div class="resource-block"><div class="resource-block-title">Latest Updates</div><div class="resource-content editable" contenteditable="false">Post supply chain updates, delays, or alerts here. Click "Edit" to add content.</div></div>
+    </div>
+
+    <div class="page" id="page-promos">
+      <div class="page-header"><div class="page-title">Promos</div><div class="page-desc">Active and upcoming promotions.</div></div>
+      <div class="resource-block"><div class="resource-block-title">Active Promotions</div><div class="resource-content editable" contenteditable="false">List active promo codes, discount details, and expiry dates here. Click "Edit" to update.</div></div>
+    </div>
+
+    <div class="page" id="page-onboarding">
+      <div class="page-header"><div class="page-title">Onboarding Docs</div><div class="page-desc">Resources for new team members.</div></div>
+      <div class="resource-block"><div class="resource-block-title">Getting Started</div><div class="resource-content editable" contenteditable="false">Welcome to the support team! Add onboarding steps, tool access instructions, and first-week checklist here. Click "Edit" to customize.</div></div>
+    </div>
+
+    <div class="page" id="page-sops">
+      <div class="page-header"><div class="page-title">SOPs</div><div class="page-desc">Standard Operating Procedures.</div></div>
+      <div class="resource-block"><div class="resource-block-title">Standard Procedures</div><div class="resource-content editable" contenteditable="false">Add your SOPs here. You can organize by topic — e.g. Refunds SOP, Dispute SOP, Escalation SOP. Click "Edit" to start writing.</div></div>
+    </div>
+
+    <div class="page" id="page-faqs">
+      <div class="page-header"><div class="page-title">FAQs</div><div class="page-desc">Frequently asked questions and answers.</div></div>
+      <div class="resource-block"><div class="resource-block-title">Common Questions</div><div class="resource-content editable" contenteditable="false">Q: How do I process a refund?
+A: Fill in the answer here.
+
+Q: Where do I log a dispute?
+A: Fill in the answer here.
+
+Click "Edit" to add more FAQs.</div></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL: Add/Edit Card -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <div class="modal-title" id="modal-title">Add card</div>
+    <div class="form-group">
+      <label class="form-label">Card title</label>
+      <input class="form-input" id="modal-card-title" type="text" placeholder="e.g. Weekly Revenue">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Description</label>
+      <input class="form-input" id="modal-card-desc" type="text" placeholder="Short description">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Icon color</label>
+      <select class="form-select" id="modal-card-color">
+        <option value="teal">Teal</option>
+        <option value="blue">Blue</option>
+        <option value="amber">Amber</option>
+        <option value="coral">Coral</option>
+        <option value="purple">Purple</option>
+        <option value="green">Green</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Links</label>
+      <div class="modal-links-list" id="modal-links-list"></div>
+      <button class="btn-add-link" onclick="addLinkRow()">+ Add link</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveCard()">Save card</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let editMode = false;
+let currentGridId = null;
+let editingCardId = null;
+let linkCounter = 0;
+
+function showPage(pageId, navEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  navEl.classList.add('active');
+}
+
+function toggleEditMode() {
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  const btn = document.getElementById('editToggle');
+  if (editMode) {
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="20 6 9 17 4 12"/></svg> Done';
+    btn.style.background = '#3B6D11';
+    document.querySelectorAll('.editable').forEach(el => el.setAttribute('contenteditable', 'true'));
+    document.querySelectorAll('.resource-content.editable').forEach(el => el.setAttribute('contenteditable', 'true'));
+  } else {
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Edit';
+    btn.style.background = '';
+    document.querySelectorAll('[contenteditable]').forEach(el => el.setAttribute('contenteditable', 'false'));
+  }
+}
+
+function openAddCard(gridId) {
+  currentGridId = gridId;
+  editingCardId = null;
+  document.getElementById('modal-title').textContent = 'Add card';
+  document.getElementById('modal-card-title').value = '';
+  document.getElementById('modal-card-desc').value = '';
+  document.getElementById('modal-card-color').value = 'teal';
+  document.getElementById('modal-links-list').innerHTML = '';
+  linkCounter = 0;
+  addLinkRow();
+  document.getElementById('modal').classList.add('open');
+}
+
+function openEditCard(cardId) {
+  editingCardId = cardId;
+  const card = document.getElementById(cardId);
+  document.getElementById('modal-title').textContent = 'Edit card';
+  document.getElementById('modal-card-title').value = card.querySelector('.card-title').textContent.trim();
+  document.getElementById('modal-card-desc').value = card.querySelector('.card-desc').textContent.trim();
+  const iconEl = card.querySelector('.card-icon');
+  const colorClasses = ['teal','blue','amber','coral','purple','green'];
+  let foundColor = 'teal';
+  colorClasses.forEach(c => { if (iconEl.classList.contains(c)) foundColor = c; });
+  document.getElementById('modal-card-color').value = foundColor;
+  const linksList = document.getElementById('modal-links-list');
+  linksList.innerHTML = '';
+  linkCounter = 0;
+  card.querySelectorAll('.card-link').forEach(link => {
+    addLinkRow(link.textContent.trim(), link.href);
+  });
+  document.getElementById('modal').classList.add('open');
+}
+
+function addLinkRow(label = '', url = '') {
+  const id = ++linkCounter;
+  const row = document.createElement('div');
+  row.className = 'modal-link-row';
+  row.id = 'link-row-' + id;
+  row.innerHTML = `
+    <input class="form-input" placeholder="Label" id="link-label-${id}" value="${label}" style="width:38%">
+    <input class="form-input" placeholder="https://..." id="link-url-${id}" value="${url}" style="flex:1">
+    <button class="btn-remove-link" onclick="document.getElementById('link-row-${id}').remove()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>`;
+  document.getElementById('modal-links-list').appendChild(row);
+}
+
+const iconSVGs = {
+  teal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+  blue: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>',
+  amber: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>',
+  coral: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>',
+  purple: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
+  green: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>'
+};
+
+function saveCard() {
+  const title = document.getElementById('modal-card-title').value.trim();
+  const desc = document.getElementById('modal-card-desc').value.trim();
+  const color = document.getElementById('modal-card-color').value;
+  const linkRows = document.querySelectorAll('#modal-links-list .modal-link-row');
+  const links = [];
+  linkRows.forEach(row => {
+    const id = row.id.replace('link-row-', '');
+    const lbl = document.getElementById('link-label-' + id)?.value.trim();
+    const url = document.getElementById('link-url-' + id)?.value.trim();
+    if (lbl && url) links.push({ label: lbl, url });
+  });
+
+  const linkHTML = links.map(l => `
+    <a class="card-link" href="${l.url}" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>${l.label}
+    </a>`).join('');
+
+  const editBtns = `
+    <div class="card-edit-actions">
+      <button class="btn-icon" title="Edit" onclick="openEditCard(this.closest('.card').id)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+      <button class="btn-icon danger" title="Delete" onclick="deleteCard(this.closest('.card').id)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+    </div>`;
+
+  if (editingCardId) {
+    const card = document.getElementById(editingCardId);
+    card.querySelector('.card-title').textContent = title;
+    card.querySelector('.card-desc').textContent = desc;
+    const iconEl = card.querySelector('.card-icon');
+    iconEl.className = 'card-icon ' + color;
+    iconEl.innerHTML = iconSVGs[color];
+    card.querySelector('.card-links').innerHTML = linkHTML;
+  } else {
+    const newId = 'card-new-' + Date.now();
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.id = newId;
+    div.innerHTML = `${editBtns}
+      <div class="card-header">
+        <div class="card-icon ${color}">${iconSVGs[color]}</div>
+        <div>
+          <div class="card-title editable" contenteditable="true">${title}</div>
+          <div class="card-desc editable" contenteditable="true">${desc}</div>
+        </div>
+      </div>
+      <div class="card-links">${linkHTML}</div>`;
+    document.getElementById(currentGridId).appendChild(div);
+  }
+
+  closeModal();
+}
+
+function deleteCard(cardId) {
+  if (confirm('Delete this card?')) document.getElementById(cardId)?.remove();
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function exportHTML() {
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'support-hub.html';
+  a.click();
+}
+</script>
+</body>
+</html>

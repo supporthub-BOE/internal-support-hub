@@ -142,6 +142,18 @@
   .page.active { display: block; }
   .playbook-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
   #onboarding-playbook { scroll-margin-top: 70px; }
+  .nav-group-newhire { background: var(--amber-light); border-radius: 10px; margin: 0 10px 14px; padding: 8px 0 6px; }
+  .nav-group-newhire .nav-group-label { color: var(--amber); }
+  .nav-item.nav-newhire { font-weight: 600; color: var(--amber); }
+  .nav-group-newhire .nav-item:hover { background: rgba(255,255,255,.55); }
+  .newhire-banner { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; background: var(--amber-light); border: 1px solid rgba(133,79,11,.25); border-left: 5px solid var(--amber); border-radius: 12px; padding: 16px 18px; margin: 0 0 24px; }
+  .newhire-title { font-weight: 700; color: var(--amber); font-size: 1.02em; }
+  .newhire-desc { color: var(--text2); font-size: .92em; margin-top: 3px; }
+  .newhire-btn { background: var(--amber); color: #fff; border: 0; border-radius: 8px; padding: 9px 16px; font: inherit; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  .newhire-btn:hover { opacity: .9; }
+  .nav-item.nav-sub { padding-left: 38px; font-size: 0.92em; position: relative; }
+  .nav-item.nav-sub::before { content: ""; position: absolute; left: 24px; top: 0; bottom: 50%; width: 8px; border-left: 1px solid var(--border2); border-bottom: 1px solid var(--border2); border-bottom-left-radius: 4px; }
+  .nav-item.parent-active { color: var(--teal-dark); }
   .playbook-frame { width:100%; height:calc(100vh - 120px); min-height:560px; border:1px solid var(--border, #e2e2e2); border-radius:12px; background:#fff; display:block; }
 
   .page-header { margin-bottom: 24px; }
@@ -405,6 +417,17 @@
 <div class="layout">
 
   <nav class="sidebar">
+    <div class="nav-group nav-group-newhire">
+      <div class="nav-group-label">New hire? Start here</div>
+      <div class="nav-item nav-newhire" onclick="showPage('onboarding', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Onboarding
+      </div>
+      <div class="nav-item nav-sub" onclick="openPlaybook(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        CS Playbook
+      </div>
+    </div>
     <div class="nav-group">
       <div class="nav-group-label">Overview</div>
       <div class="nav-item active" onclick="showPage('dashboard', this)">
@@ -448,10 +471,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
         Promos
       </div>
-      <div class="nav-item" onclick="showPage('onboarding', this)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-        Onboarding
-      </div>
       <div class="nav-item" onclick="showPage('sops', this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
         SOPs
@@ -470,6 +489,13 @@
       <div class="page-header">
         <div class="page-title">Dashboard</div>
         <div class="page-desc">Quick access to all reports, tools, and team resources.</div>
+      </div>
+      <div class="newhire-banner">
+        <div>
+          <div class="newhire-title">👋 New hire? Please go to Onboarding first.</div>
+          <div class="newhire-desc">Start with the CS Onboarding Guide and the Bright Footwear CS Playbook before handling tickets or calls.</div>
+        </div>
+        <button class="newhire-btn" onclick="showPage('onboarding', document.querySelector('.nav-newhire'))">Go to Onboarding</button>
       </div>
 
       <div class="section-label">
@@ -875,7 +901,7 @@
           </div>
           <div class="card-links">
             <a class="card-link" href="https://docs.google.com/document/d/1vGGqwLTf98PbPDSx9CpLVwPrry8gDkoXraF0F6cc858/edit?tab=t.0" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>CS Onboarding Guide</a>
-            <a class="card-link" href="#" onclick="event.preventDefault();event.stopPropagation();showPage('onboarding', document.querySelector('.nav-item[onclick*=&quot;onboarding&quot;]'));setTimeout(()=>document.getElementById('onboarding-playbook').scrollIntoView({behavior:'smooth'}),50)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>CS Playbook</a>
+            <a class="card-link" href="#" onclick="event.preventDefault();event.stopPropagation();openPlaybook(document.querySelector('.nav-sub'))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>CS Playbook</a>
           </div>
         </div>
 
@@ -1527,7 +1553,7 @@
             </div>
           </div>
           <div class="card-links">
-            <a class="card-link" href="#" onclick="event.preventDefault();document.getElementById('onboarding-playbook').scrollIntoView({behavior:'smooth'})">
+            <a class="card-link" href="#" onclick="event.preventDefault();openPlaybook(document.querySelector('.nav-sub'))">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               Open Playbook
             </a>
@@ -1757,7 +1783,15 @@ let currentGridId = null;
 let editingCardId = null;
 let linkCounter = 0;
 
+function openPlaybook(navEl) {
+  showPage('onboarding', navEl);
+  const parent = document.querySelector('.nav-item[onclick*="\'onboarding\'"]');
+  if (parent) parent.classList.add('parent-active');
+  setTimeout(() => document.getElementById('onboarding-playbook').scrollIntoView({ behavior: 'smooth' }), 50);
+}
+
 function showPage(pageId, navEl) {
+  document.querySelectorAll('.nav-item.parent-active').forEach(n => n.classList.remove('parent-active'));
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('page-' + pageId).classList.add('active');

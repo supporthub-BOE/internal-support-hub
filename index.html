@@ -177,6 +177,11 @@
   details.rfaq p { margin:8px 0 2px; color: var(--text2); font-size:.93em; line-height:1.55; }
   .rk-note { font-size:.85em; color: var(--text3); margin:12px 0 0; }
   @media (max-width: 760px) { .rk-grid, .rk-two { grid-template-columns:1fr; } }
+  .lock-banner { background: var(--surface2); border:1px solid var(--border2); border-left:5px solid var(--text2); border-radius:12px; padding:14px 18px; }
+  .lock-title { font-weight:700; }
+  .lock-desc { color: var(--text2); font-size:.92em; margin-top:3px; }
+  .lock-chip { align-self:flex-start; display:inline-block; font-size:.75em; font-weight:600; color: var(--text2); background: var(--surface2); border:1px solid var(--border2); border-radius:999px; padding:2px 9px; margin-top:4px; }
+  .nav-lock { margin-left:auto; font-size:.8em; opacity:.7; }
   .card-placeholder { border-style: dashed; }
   .todo-chip { align-self:flex-start; width:auto; display:inline-block; font-size:.8em; font-weight:600; color: var(--text3); background: var(--surface2); border-radius:999px; padding:3px 10px; }
   @media (max-width: 760px) { .brand-switch { order: 3; width: 100%; justify-content: center; } .topbar { flex-wrap: wrap; height: auto; padding-top: 8px; padding-bottom: 8px; gap: 8px; } }
@@ -553,6 +558,10 @@
       <div class="nav-item" onclick="showPage('r-tools', this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
         Tools
+      </div>
+      <div class="nav-item" onclick="showPage('r-supply', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Supply Chain <span class="nav-lock" title="Restricted access">🔒</span>
       </div>
       <div class="nav-item" onclick="showPage('r-policies', this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
@@ -1998,6 +2007,94 @@
 
     </div>
 
+
+    <div class="page" id="page-r-supply">
+      <div class="page-header">
+        <div class="page-title">Renesia Supply Chain</div>
+        <div class="page-desc">Outsourcing, inventory, subscription projections and shipment tracking for Renesia.</div>
+      </div>
+      <div class="lock-banner">
+        <div class="lock-title">🔒 Restricted access</div>
+        <div class="lock-desc">Some of these files are limited to authorized team members. If a link asks you to request access, click <b>Request access</b> or ask your team lead. Please don't share these links outside the team.</div>
+      </div>
+      <div class="section-label" style="margin-top:24px">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Supply Chain Files
+        </div>
+        <button class="btn-add-card" onclick="openAddCard('r-supply-grid')">+ Add card</button>
+      </div>
+      <div class="cards-grid" id="r-supply-grid">
+        <div class="card" id="card-rs-outsourcing">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-rs-outsourcing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-rs-outsourcing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20V8l-6 4V8l-6 4V4H2z"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Renesia Outsourcing</div>
+              <div class="card-desc editable" contenteditable="false">Outsourcing and supplier records</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1SPtDSlu9_NAsRez7DBuzFOVVSfKhqZ8fqcvdRaFMyAg/edit?gid=864811532#gid=864811532" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open sheet</a><span class="lock-chip">🔒 Restricted</span>
+          </div>
+        </div>
+
+        <div class="card" id="card-rs-master">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-rs-master')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-rs-master')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Master Database: Renesia</div>
+              <div class="card-desc editable" contenteditable="false">Stock levels, inventory and product master data</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1o1QxTMGYrg1srJWvdm5eGEmPvqqMZriMyjAHbHXbaOU/edit?gid=125482726#gid=125482726" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open sheet</a><span class="lock-chip">🔒 Restricted</span>
+          </div>
+        </div>
+
+        <div class="card" id="card-rs-subproj">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-rs-subproj')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-rs-subproj')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Renesia Subscription Order Projection</div>
+              <div class="card-desc editable" contenteditable="false">Projected subscription orders for stock planning</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/17HVx9v5blv8akkRyJapYL523alO0mozk/edit?gid=1642603392#gid=1642603392" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open sheet</a><span class="lock-chip">🔒 Restricted</span>
+          </div>
+        </div>
+
+        <div class="card" id="card-rs-tracking">
+          <div class="card-edit-actions">
+            <button class="btn-icon" title="Edit" onclick="openEditCard('card-rs-tracking')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" title="Delete" onclick="deleteCard('card-rs-tracking')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+          </div>
+          <div class="card-header">
+            <div class="card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+            <div>
+              <div class="card-title editable" contenteditable="false">Tracking — All Reports (BOE)</div>
+              <div class="card-desc editable" contenteditable="false">2024-04-11 tracking of all shipment reports</div>
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1jwf3jmmVHI1czTl0SGyKducv5sDRl6dOFWCs0-qleyg/edit?gid=1357921914#gid=1357921914" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open sheet</a><span class="lock-chip">🔒 Restricted</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
     <div class="page" id="page-r-tools">
       <div class="page-header">
         <div class="page-title">Renesia Tools</div>
@@ -2108,12 +2205,12 @@
           <div class="card-header">
             <div class="card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
             <div>
-              <div class="card-title editable" contenteditable="false">Renesia Supply Chain / Inventory</div>
-              <div class="card-desc editable" contenteditable="false">Stock levels, shipments and OOS updates</div>
+              <div class="card-title editable" contenteditable="false">Renesia Supply Chain</div>
+              <div class="card-desc editable" contenteditable="false">Outsourcing, master database, subscription projections and tracking</div>
             </div>
           </div>
           <div class="card-links">
-            <a class="card-link" href="https://docs.google.com/spreadsheets/d/1o1QxTMGYrg1srJWvdm5eGEmPvqqMZriMyjAHbHXbaOU/edit?gid=125482726#gid=125482726" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Inventory Sheet</a>
+            <a class="card-link" href="#" onclick="event.preventDefault();showPage('r-supply', document.querySelector('.nav-item[onclick*=&quot;r-supply&quot;]'))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open Supply Chain</a><span class="lock-chip">🔒 Restricted</span>
           </div>
         </div>
 

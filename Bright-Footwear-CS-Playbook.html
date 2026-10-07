@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bright Footwear Customer Support Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F6FA; --panel:#FFFFFF; --ink:#18233A; --muted:#5B6680; --line:#DCE1EB;
+  --navy:#1E3A6E; --sun:#F2B705; --sun-ink:#5A4300; --sun-soft:#FFF4CC;
+  --plum:#7E4A9B; --plum-soft:#F2E8F7; --ok:#1F7A4D; --ok-soft:#E3F4EA; --warn:#A33A2B; --warn-soft:#FBE7E3;
+  --chip:#EAEFF7;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121826; --panel:#1A2233; --ink:#E7ECF5; --muted:#A1ACC2; --line:#2C3650;
+    --navy:#8FB0EA; --sun:#F2B705; --sun-ink:#FFE08A; --sun-soft:#3A3115;
+    --plum:#C99BE0; --plum-soft:#2E2238; --ok:#6FCF9B; --ok-soft:#173326; --warn:#F09A8C; --warn-soft:#3A1F1B;
+    --chip:#232D42;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121826; --panel:#1A2233; --ink:#E7ECF5; --muted:#A1ACC2; --line:#2C3650;
+  --navy:#8FB0EA; --sun:#F2B705; --sun-ink:#FFE08A; --sun-soft:#3A3115;
+  --plum:#C99BE0; --plum-soft:#2E2238; --ok:#6FCF9B; --ok-soft:#173326; --warn:#F09A8C; --warn-soft:#3A1F1B;
+  --chip:#232D42;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55}
+h1,h2,h3{font-family:"Outfit","Nunito Sans",system-ui,sans-serif;line-height:1.2;margin:0}
+a{color:var(--navy)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+
+.app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+aside{background:var(--panel);border-right:1px solid var(--line);padding:24px 16px;position:sticky;top:env(safe-area-inset-top,0px);height:100vh;overflow-y:auto}
+.logo{font-family:Outfit,sans-serif;font-weight:700;font-size:1.25rem;padding:0 8px 4px}
+.logo small{display:block;font-family:"Nunito Sans",sans-serif;font-weight:600;font-size:.8rem;color:var(--muted)}
+.nav{list-style:none;padding:0;margin:20px 0 0}
+.nav button{width:100%;text-align:left;background:none;border:0;border-radius:10px;padding:10px 12px;font-weight:600;display:flex;gap:10px;align-items:center}
+.nav button:hover{background:var(--chip)}
+.nav button[aria-current="page"]{background:var(--navy);color:var(--panel)}
+.nav .sep{height:1px;background:var(--line);margin:10px 8px}
+.nav .badge{margin-left:auto;font-size:.72rem;background:var(--sun);color:#3A2B00;border-radius:999px;padding:1px 8px}
+
+.top{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:16px 32px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.search{flex:1;min-width:200px;position:relative}
+.search input{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+.results{position:absolute;left:0;right:0;top:calc(100% + 6px);background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(20,30,60,.15);max-height:360px;overflow:auto;display:none}
+.results.open{display:block}
+.results button{display:block;width:100%;text-align:left;border:0;background:none;padding:10px 14px;border-bottom:1px solid var(--line)}
+.results button:hover,.results button:focus-visible{background:var(--chip)}
+.results small{color:var(--muted)}
+.brand-toggle{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--bg)}
+.brand-toggle button{border:0;background:none;border-radius:999px;padding:6px 14px;font-weight:700;font-size:.9rem}
+.brand-toggle button[aria-pressed="true"][data-b="bright"]{background:var(--sun);color:#3A2B00}
+.brand-toggle button[aria-pressed="true"][data-b="renesia"]{background:var(--plum);color:#fff}
+
+main{min-width:0}
+.view{max-width:860px;padding:32px;margin:0 auto}
+.hero h1{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700}
+.hero p{color:var(--muted);max-width:62ch;font-size:1.08rem}
+.picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:24px 0 0}
+.picker + .section{margin-top:36px}
+.pick{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:left}
+.pick:hover{border-color:var(--navy)}
+.pick strong{display:block;font-family:Outfit,sans-serif;font-size:1.1rem}
+.pick span{color:var(--muted);font-size:.92rem}
+.pick.main{border:2px solid var(--sun);background:var(--sun-soft)}
+.section{margin:32px 0}
+.section h2{font-size:1.35rem;margin-bottom:10px}
+.prose{max-width:68ch}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;padding:10px 0 10px 44px;position:relative;border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);position:absolute;left:0;top:10px;width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--panel);display:grid;place-items:center;font-weight:700;font-family:Outfit,sans-serif}
+.brands{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.brandcard{border-radius:14px;padding:16px;border:1px solid var(--line);background:var(--panel)}
+.brandcard.bright{border-left:6px solid var(--sun)}
+.brandcard.renesia{border-left:6px solid var(--plum)}
+
+.ch-head h1{font-size:clamp(1.6rem,3.5vw,2.2rem)}
+.ch-head p{color:var(--muted);margin:6px 0 0}
+.tabs{display:flex;gap:4px;margin:22px 0 20px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;background:none;padding:10px 14px;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--navy)}
+
+.note{border-radius:12px;padding:12px 16px;margin:0 0 18px;font-size:.95rem}
+.note.bright{background:var(--sun-soft);color:var(--ink);border-left:5px solid var(--sun)}
+.note.renesia{background:var(--plum-soft);border-left:5px solid var(--plum)}
+.note.rule{background:var(--warn-soft);border-left:5px solid var(--warn)}
+.note b{display:block;margin-bottom:2px}
+
+/* Decision flow — the centrepiece */
+.trail{list-style:none;padding:0;margin:0 0 14px}
+.trail li{display:flex;gap:10px;align-items:baseline;padding:6px 0;color:var(--muted);font-size:.93rem}
+.trail li button{background:none;border:0;padding:0;color:var(--navy);text-decoration:underline;font-size:.85rem}
+.trail .ans{color:var(--ink);font-weight:700}
+.qcard{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+.qcard h3{font-size:1.3rem;margin-bottom:6px}
+.qcard .hint{color:var(--muted);margin:0 0 14px;font-size:.95rem}
+.opts{display:grid;gap:10px}
+.opts button{text-align:left;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-weight:600}
+.opts button:hover{border-color:var(--navy);background:var(--chip)}
+.result{border:2px solid var(--ok);background:var(--ok-soft)}
+.result h3::before{content:"✓ ";color:var(--ok)}
+.result ol{margin:8px 0 14px;padding-left:22px}
+.result.esc{border-color:var(--warn);background:var(--warn-soft)}
+.result.esc h3::before{content:"! ";color:var(--warn)}
+.macros{display:flex;flex-direction:column;gap:8px}
+.macro{display:flex;align-items:center;gap:10px;justify-content:space-between;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.macro a{font-weight:700;text-decoration:none;font-size:.85rem;white-space:nowrap;padding:6px 10px;border-radius:8px;background:var(--navy);color:var(--panel)}
+.flow-actions{display:flex;gap:10px;margin-top:14px}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:9px 14px;font-weight:700}
+.btn.primary{background:var(--navy);color:var(--panel);border-color:var(--navy)}
+@media (prefers-reduced-motion:no-preference){.qcard{animation:pop .22s ease-out}}
+@keyframes pop{from{transform:translateY(6px);opacity:.4}to{transform:none;opacity:1}}
+
+.linklist{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.linklist a{display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;text-decoration:none;font-weight:600}
+.linklist a:hover{border-color:var(--navy)}
+.linklist small{display:block;color:var(--muted);font-weight:400}
+.group{margin-bottom:22px}
+.group h3{font-size:1.02rem;margin-bottom:8px}
+.tickets{display:flex;flex-wrap:wrap;gap:8px}
+.tickets a{font-size:.88rem;background:var(--chip);border-radius:8px;padding:5px 10px;text-decoration:none}
+.filter{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:inherit;margin-bottom:12px}
+
+.quiz .qq{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.quiz .qq p{font-weight:700;margin:0 0 10px}
+.quiz .opts button.correct{border-color:var(--ok);background:var(--ok-soft)}
+.quiz .opts button.wrong{border-color:var(--warn);background:var(--warn-soft)}
+.quiz .why{margin:10px 0 0;font-size:.93rem;color:var(--muted)}
+.score{font-family:Outfit,sans-serif;font-size:1.1rem;font-weight:600}
+
+.news{border-left:3px solid var(--line);padding-left:20px;margin-left:6px}
+.news article{position:relative;margin-bottom:26px}
+.news article::before{content:"";position:absolute;left:-28px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--sun);border:3px solid var(--bg)}
+.news time{font-weight:700;color:var(--muted);font-size:.9rem}
+.news h3{font-size:1.1rem;margin:2px 0 6px}
+.news ul{margin:6px 0;padding-left:20px}
+
+.hdr-link{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:10px;background:var(--navy);color:var(--panel);font-weight:700;text-decoration:none;font-size:.92rem;white-space:nowrap}
+.hdr-link:hover{opacity:.9}
+.navlabel{font-size:.8rem;font-weight:700;color:var(--muted);padding:14px 12px 4px}
+details.faq{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:0 16px}
+details.faq summary{cursor:pointer;padding:14px 0;font-weight:700;list-style:none;display:flex;gap:10px;align-items:center}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";margin-left:auto;font-size:1.2rem;color:var(--muted)}
+details.faq[open] summary::after{content:"−"}
+.tag{font-size:.75rem;font-weight:700;background:var(--chip);color:var(--navy);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.script{background:var(--bg);border-left:4px solid var(--navy);border-radius:8px;padding:12px 14px;margin:0 0 10px;font-style:italic}
+.fnote{font-size:.93rem;color:var(--muted);margin:0 0 14px}
+.tbl{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:.95rem}
+.tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{background:var(--chip)}
+.plist{padding-left:20px;margin:0}.plist li{margin-bottom:8px}
+.tmpl{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86rem;overflow-x:auto}
+.picklabel{font-family:Outfit,sans-serif;font-size:1.05rem;margin:28px 0 -10px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.duocard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.duocard span{color:var(--muted);font-size:.94rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--sun);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:4px;font-size:.93rem;color:var(--muted)}
+.stat .num{font-family:Outfit,sans-serif;font-size:2rem;font-weight:700;color:var(--ink);line-height:1}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tool{display:flex;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink)}
+.tool:hover{border-color:var(--navy)}
+.tool .ti{font-size:1.4rem}
+.tool small{display:block;color:var(--muted)}
+@media (max-width:860px){.duo,.tools{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
+.mobile-nav{display:none}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr}
+  aside{display:none}
+  .mobile-nav{display:flex;gap:6px;overflow-x:auto;padding:10px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+  .mobile-nav button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 12px;white-space:nowrap;font-weight:600;font-size:.9rem}
+  .mobile-nav button[aria-current="page"]{background:var(--navy);color:var(--panel);border-color:var(--navy)}
+  .top{padding:12px 16px}
+  .view{padding:20px 16px}
+  .brands{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside aria-label="Playbook sections">
+    <div class="logo">Bright Footwear<small>Support Playbook · for new agents</small></div>
+    <ul class="nav" id="nav"></ul>
+  </aside>
+  <main>
+    <div class="top">
+      <div class="search">
+        <label for="q" class="sr" style="position:absolute;left:-9999px">Search playbook</label>
+        <input id="q" type="search" placeholder="Search macros or topics, e.g. “damaged”, “tracking”" autocomplete="off">
+        <div class="results" id="results" role="listbox"></div>
+      </div>
+      <a class="hdr-link" href="https://www.bright-footwear.com/" target="_blank" rel="noopener">🌐 Bright Footwear website</a>
+    </div>
+    <div class="mobile-nav" id="mnav"></div>
+    <div class="view" id="view"></div>
+  </main>
+</div>
+
+<script>
+const MDB = "https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#rangeid=";
+const M = {
+  r30:["Refund - Not possible because 30+ days","1287094640"],
+  rLate2:["Return too late - Second explanation","1053979656"],
+  rLate3:["Return too late - Third (and last) explanation","419728133"],
+  askReason:["Special - Ask for reason of return","81674575"],
+  missPics:["Order - Ask for pictures of missing items","432677683"],
+  twoShip:["Order - Send in 2 separate shipments","1080508126"],
+  missReship:["Order - Missing item (Reship confirmation)","1163788647"],
+  dmgPics:["Damage - Ask for pictures","1958433417"],
+  dmgReship:["Order - Damaged item (Reship confirmation)","924899981"],
+  dmgNotUs:["Damage - Damaged not our fault","4921284"],
+  wrongReship:["Reship (if wrong items received)","1222270059"],
+  wrongConf:["Order - Wrong item (Reship confirmation)","319118046"],
+  color:["Product - Issues Color Of Product","23799581"],
+  used:["Return - Used Shoes","1551530699"],
+  three:["Return - 3 Options (new)","1362027897"],
+  opt1:["Accepted option 2 - Next step Return Store Credit","42446509"],
+  opt1track:["Accepted option 2 - Return tracking received - Pending voucher","1245457366"],
+  receipt:["Return - Ask For Return Receipt","1194810452"],
+  lateReceipt:["Return - too late (according to receipt)","1963568993"],
+  wrongAddr:["Refund - Return to wrong address (no refund possible)","327880190"],
+  pending:["Refund - Already submitted pending for review","1014062720"],
+  delay:["Status - Delay in Fulfilment","190371265"],
+  onway:["Status - Order on the way","2138685422"],
+  dest:["Status - In destination country","1873239470"],
+  delivered:["Status - Delivered","1442168890"],
+  unf35:["Status - Unfulfilled - within 3-5 days","153672966"],
+  unf5:["Status - Unfulfilled more than 5 days","2035220703"],
+  unf5b:["Status - Unfulfilled more than 5 days (second email)","2035220703"],
+  podYes:["Reship - Package not received by customer (With POD)","1969525270"],
+  podNo:["Reship - Package not received by customer (No POD)","432433842"],
+  cancel1:["Cancelation - Explanation Policy","1473480106"],
+  cancel2:["Cancelation - Explanation Policy - Email 2","39595577"],
+  ex30:["Exchange - Not possible because 30+ days","737039116"],
+  exNoProd:["Exchange - Accept Option 1 (Customer did not mention exchange product)","1056630559"],
+  exInvoice:["Exchange - Accept Option 1 (Invoice send to Customer)","545457265"]
+};
+const mlink = k => MDB + M[k][1];
+const L = {
+  refund:"https://docs.google.com/document/d/1Bq0kya9ZpxLAWVtC8esvePT_N4asnYErumyD-WxHcjc/edit?tab=t.0#heading=h.qc6jiuz2kcrm",
+  mdb:"https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit?gid=133717234#gid=133717234",
+  status:"https://docs.google.com/document/d/16AbTTGxUAgmLpVkSArk_K35gdbhgD_-RY4qSDmKe4uc/edit#heading=h.oh85zy1ktco3",
+  cancel:"https://docs.google.com/document/d/16x1_xt1JWu8eiQmE8HTZUxGt2j1Wn2bsC1LQ9e1nCr8/edit#heading=h.3pxdpdqb44pg",
+  exchange:"https://docs.google.com/document/d/1BY-NJGcEk8TEV2vMpocDFvSX9D3OC1COY2xxBKqVKeY/edit#heading=h.zhmne5ce5i29",
+  returnSheet:"https://docs.google.com/spreadsheets/d/1NBgHDcod4Y8-GXv9lQKZHnbi5rGMCqaIyJuSJ0e6IsM/edit?gid=0#gid=0",
+  sizeChart:"https://docs.google.com/spreadsheets/d/1uXgqk_nMDc89oROLl8rFbNGKs7VAkVoCH91dnr05jiw/edit?gid=623723052#gid=623723052",
+  spg:"https://docs.google.com/document/d/1p_Wge6FepMcD023bqO12QoZvEUcmUVmHHmtnk8DROTg/edit?tab=t.0#heading=h.ng3nmxvfjtub",
+  cheat:"https://docs.google.com/document/d/1thm4Lm0v4EijxyfYR5eMQw5_sNXVYwLoezy3awnqY40/edit?tab=t.0#heading=h.kd5l7f2uke0z",
+  phoneSop:"https://drive.google.com/file/d/1TcsEDNRTa5_JCM2fauqbM_xMiXbpij6f/view",
+  phoneGuide:"https://docs.google.com/document/d/1K1R1Ai4_4LgjQQ93EHo8vb14yP_wZwAfMxeq6x40lDc/edit?tab=t.0",
+  phoneFu:"https://docs.google.com/document/d/1M0o3mXelZc2nvIFxgYHW7wZ9L7Mr8pY7LwK3h9MvsPg/edit?tab=t.0#heading=h.397lndlkrvjk",
+  callLog:"https://docs.google.com/spreadsheets/d/1PK5cQzYDlu9YVztK-BYQAM67OLjFwuUzc05lDgGCeNA/edit?gid=848892810#gid=848892810",
+  quo:"https://my.quo.com/inbox/PNyVlvLx0e/c/CN4b85d2c877ad4647a8b404ddc698e174",
+  customs:"https://docs.google.com/document/d/1Eg7PMw6CtlEdD5ol7pt4hWnoViVUES3MlYsarC6JYCw/edit",
+  problemSheets:"https://drive.google.com/drive/folders/1cHTC89e20aBSsfetIvPzR08S3eYqlnMQ",
+  psLoom:"https://www.loom.com/share/d64b090fbb644f59897221a1ed870a70",
+  localTrack:"https://www.loom.com/share/d3874d2dcba3451bac0069a79eec7699?sid=32665cc5-a174-403d-8a08-1150450997f6"
+};
+const ZB = n => "https://brightfootwear.zendesk.com/agent/tickets/"+n;
+
+const CH = {
+returns:{
+  title:"How can I return?", icon:"↩️", short:"Returns, damaged, wrong or missing items",
+  intro:"Our most common request. Figure out what really happened first: a mistake on our side is handled very differently from a change of mind.",
+  notes:{
+    bright:"Footwear tip: if the customer says the shoes don't fit, offer the options in this order: 1) exchange for another size, 2) store credit with an additional $20, 3) refund as the last offer. Worn shoes fall under the “Used Shoes” macro."
+  },
+  rules:[
+    "The return window is 30 days. Watch the Loom on how to count the deadline before you tell a customer they're too late.",
+    "Option 3 (refund): wait until the return is accepted in our return warehouse before refunding. Check the Return Sheet to see if it has been received."
+  ],
+  flow:{
+    start:{q:"What is the customer telling you?",o:[["The item arrived damaged","dmg"],["They got the wrong item","wrong"],["Something is missing from the order","miss"],["The colour looks different from the photos","color"],["They want to return it (changed mind, doesn't fit)","why"],["They already sent it back","sent"]]},
+    dmg:{q:"Did they send photos of the damage?",o:[["Not yet","dmgAsk"],["Yes","dmgFault"]]},
+    dmgAsk:{r:"Ask for photos",s:["Ask for clear photos of the damaged item and packaging.","Set a reminder to follow up if they don't reply."],m:["dmgPics"]},
+    dmgFault:{q:"Looking at the photos, is it our fault?",h:"e.g. manufacturing defect or shipping damage vs. damage from use",o:[["Yes, it's our mistake","dmgYes"],["No, it's from use or wear","dmgNo"]]},
+    dmgYes:{r:"Reship the item",s:["Request a reship through the supplier.","Confirm the reship with the customer.","Once the supplier adds tracking, send the LOCAL tracking, never the Chinese one."],m:["dmgReship"]},
+    dmgNo:{r:"Explain it's not covered",s:["Politely explain the damage isn't from shipping or production.","If they want, offer the regular return options."],m:["dmgNotUs"]},
+    wrong:{r:"Reship the correct item",s:["Check the order against what the customer received.","Request a reship of the correct item.","Confirm with the customer."],m:["wrongReship","wrongConf"]},
+    miss:{q:"Did they send a photo of what they received?",o:[["Not yet","missAsk"],["Yes","missSplit"]]},
+    missAsk:{r:"Ask for photos",s:["Ask for a photo of the parcel contents and the package label."],m:["missPics"]},
+    missSplit:{q:"Was the order sent in two separate shipments?",h:"Check tracking — the rest may still be on the way.",o:[["Yes, second parcel is still coming","missTwo"],["No, it's really missing","missYes"]]},
+    missTwo:{r:"Explain the split shipment",s:["Tell the customer the rest is in a separate parcel.","Share the local tracking for the second parcel."],m:["twoShip"]},
+    missYes:{r:"Reship the missing item",s:["Request a reship of the missing item.","Confirm with the customer."],m:["missReship"]},
+    color:{r:"Handle the colour concern",s:["Use the colour macro to explain how screens and lighting affect colour.","If they still want to return, continue with the return flow."],m:["color"]},
+    why:{q:"Did they tell you why they want to return?",o:[["No","whyAsk"],["Yes","days"]]},
+    whyAsk:{r:"Ask for the reason",s:["Ask why they'd like to return. The answer may change the flow (e.g. damaged or wrong item)."],m:["askReason"]},
+    days:{q:"Is it within 30 days of delivery?",h:"Count from the delivery date. See the deadline Loom in Policy & videos.",o:[["Yes","usedQ"],["No, 30+ days","late"]]},
+    late:{r:"Explain the return window has passed",s:["Send the 30+ days macro.","If they push back, send the second explanation.","If they push back again, send the third and last explanation."],m:["r30","rLate2","rLate3"]},
+    usedQ:{q:"Has the item been used or worn?",o:[["No, it's unused","offer"],["Yes","used"]]},
+    used:{r:"Used items can't be returned",s:["Explain that used items aren't eligible for return."],m:["used"]},
+    offer:{q:"Offer our 3 options. Which one did they choose?",h:"Option 1 exchange · Option 2 store credit · Option 3 refund",o:[["Haven't sent the options yet","sendThree"],["Option 1: Exchange","o2"],["Option 2: Store credit","o1"],["Option 3: Refund","o3"],["None — they're complaining","oNone"]]},
+    sendThree:{r:"Send the 3 options",s:["Send the 3 Options macro and wait for their choice."],m:["three"]},
+    o1:{r:"Process store credit",s:["Send the next steps for returning the item.","When they send the return tracking, confirm the voucher is pending."],m:["opt1","opt1track"]},
+    o2:{r:"Go to the Exchange flow",s:["Open the “I want to exchange” chapter and follow its flow."],m:["exNoProd","exInvoice"],go:"exchange"},
+    o3:{q:"Did they send a valid return tracking number?",o:[["Not yet","o3receipt"],["Yes","o3check"]]},
+    o3check:{q:"Is the return accepted in our return warehouse?",h:"Check the Return Sheet.",o:[["Yes, it's accepted","o3refund"],["Not yet","o3wait"]]},
+    o3wait:{r:"Wait for the warehouse",s:["Let the customer know we'll refund once the return is accepted at our warehouse.","Check the Return Sheet again before your next reply."],m:[],lk:[["Open Return Sheet",L.returnSheet]]},
+    o3receipt:{r:"Ask for the return receipt",s:["Ask for the return receipt or tracking number."],m:["receipt"]},
+    o3refund:{r:"Refund the customer",s:["Confirm in the Return Sheet that the return was accepted at the warehouse.","Refund the items the warehouse accepted."],m:["pending"],lk:[["Open Return Sheet",L.returnSheet]]},
+    oNone:{r:"Escalate",esc:true,s:["Stay calm and restate the options once.","If they still refuse, flag the ticket to your team lead.","See example ticket 4422 under Examples."],m:[]},
+    sent:{q:"Did they tell us before sending it back?",o:[["Yes","rec"],["No","notify"]]},
+    notify:{q:"Was it sent within 14 days of receiving the order?",o:[["Yes","rec"],["No","no14"]]},
+    no14:{r:"Check with your lead",esc:true,s:["Returns after 14 days with no written cancellation are legally binding, so we can refuse.","Decide with your team lead how to handle this case."],m:[]},
+    rec:{q:"Do we have their return receipt or tracking?",o:[["No","recAsk"],["Yes","addr"]]},
+    recAsk:{r:"Ask for the return receipt",s:["Ask for the receipt so we can confirm address and date."],m:["receipt"]},
+    addr:{q:"Was it sent to the correct return address?",o:[["Yes","recDate"],["No","wrongA"]]},
+    wrongA:{r:"Explain no refund is possible",s:["Explain that returns sent to the wrong address can't be refunded."],m:["wrongAddr"]},
+    recDate:{q:"Does the receipt show it was sent in time?",o:[["Yes","o3check"],["No, too late","lateR"]]},
+    lateR:{r:"Explain the return was too late",s:["Send the macro explaining the receipt shows it was sent after the deadline."],m:["lateReceipt"]}
+  },
+  policy:[["[Bright Footwear] Refund Policy V3",L.refund,"All return rules in one doc"],["Return Sheet",L.returnSheet,"Check if a return was accepted at our warehouse"],["Loom: How to calculate the return deadline","https://www.loom.com/share/e40c8055adcd455e9c9d8df0a507d080"],["Loom: Our 3 return options","https://www.loom.com/share/0652ba8c773140c9ac71842ca97b14c3"],["Loom: Option 2 – Store credit","https://www.loom.com/share/74c398e051e74e5ebb1e5a43c73fd0d8?sid=88a4d644-2faa-4e5c-bb77-4fe853eff45f"],["Loom: Option 1 – Exchange","https://www.loom.com/share/476d39ca84884da9b9bf31fd875e4455?sid=ee6823de-802b-48ff-8fd9-37a9ec24af84"],["Loom: Option 3 – Return","https://www.loom.com/share/fcb086c6490f4c5c9ed9a776690aa57a?sid=341a97d1-87c1-4018-8ed3-e4b4e0c10fe9"],["Miro flowchart","https://miro.com/app/board/uXjVKUEGSnQ=/?moveToWidget=3458764678542405165&cot=14","Updated return flowchart"],["Loom: Flowchart walkthrough","https://www.loom.com/share/79ec7ee5743945c28232512b8abd25f9"]],
+  macros:["r30","rLate2","rLate3","askReason","missPics","twoShip","missReship","dmgPics","dmgReship","dmgNotUs","wrongReship","wrongConf","color","used","three","opt1","opt1track","receipt","lateReceipt","wrongAddr","pending","exNoProd","exInvoice"],
+  examples:[["Eligible → Option 1 (exchange)",[ZB(19033),ZB(17740)]],["Eligible → Option 2 (store credit)",[ZB(17249),ZB(17357)]],["Eligible → Option 3 (refund)",[ZB(17067),ZB(17743)]],["Eligible but refuses every option",[ZB(4422)]],["Not eligible, customer complains",[ZB(7617)]],["Our mistake: broken item",[ZB(17863)]],["Our mistake: missing item",[ZB(19152)]]],
+  quiz:[
+    {q:"A customer wants a refund 35 days after delivery. What do you send first?",o:["Return - 3 Options","Refund - Not possible because 30+ days","Return - Ask For Return Receipt"],a:1,w:"The 30-day window has passed. If they push back, follow with the second and then third explanation."},
+    {q:"A customer chose Option 3 and sent a valid return tracking number. When do you refund?",o:["Right away","Once the return is accepted in our warehouse","After 30 days"],a:1,w:"Wait until the return is accepted in our return warehouse. Check the Return Sheet."},
+    {q:"A customer says an item is missing but sent no photo. First step?",o:["Reship right away","Ask for photos of what they received","Refund the item"],a:1,w:"Always ask for photos first. The rest may also be in a separate shipment."}
+  ]
+},
+wismo:{
+  title:"Where is my order?", icon:"📦", short:"Tracking, delays, not received",
+  intro:"Check the order in Shopify and Parcel Panel before you reply. The status decides which macro you use.",
+  notes:{bright:"Bright Footwear orders follow the standard status flow below."},
+  rules:["Never send the Chinese tracking number to a customer. Always find and share the LOCAL carrier tracking so they can follow up with the carrier themselves. If you can't find the local tracking, share our website's tracking.","When the status says Delivered, track it in Parcel Panel, share the local tracking, and check if it has a POD (proof of delivery). Note: not all tracking has a POD. If it's unavailable, you can ask our supplier."],
+  flow:{
+    start:{q:"What's the order status?",h:"Check Shopify / Parcel Panel",o:[["Not shipped yet (unfulfilled)","unf"],["On the way","onway"],["Arrived in the destination country","dest"],["Delivered","del"]]},
+    unf:{q:"How long since they ordered?",o:[["3–5 days","u35"],["More than 5 days","u5"],["There's a known delay","delay"]]},
+    u35:{r:"Reassure: still within processing time",s:["Explain orders ship within the normal processing window."],m:["unf35"]},
+    u5:{q:"Is this your first reply on this?",o:[["Yes","u5a"],["No, they've written again","u5b"]]},
+    u5a:{r:"Explain the delay",s:["Send the first unfulfilled macro.","Check with the supplier on the shipping date."],m:["unf5"]},
+    u5b:{r:"Send the follow-up",s:["Send the second-email version.","Flag to your lead if it keeps slipping."],m:["unf5b"]},
+    delay:{r:"Explain the fulfilment delay",s:["Use the delay macro and give a realistic timeline."],m:["delay"]},
+    onway:{r:"Share tracking",s:["Share the local tracking link.","Can't find the local tracking? Share our website's tracking instead."],m:["onway"]},
+    dest:{r:"Let them know it's close",s:["Explain the parcel is in their country and with the local carrier.","Share the local tracking."],m:["dest"]},
+    del:{q:"Does the customer say they received it?",o:[["They're just asking about status","delOk"],["They say they never got it","pod"]]},
+    delOk:{r:"Confirm delivery",s:["Track in Parcel Panel.","Share the LOCAL tracking so they can check with the carrier.","Check if the tracking has a POD (proof of delivery)."],m:["delivered"]},
+    pod:{q:"Is there a proof of delivery (POD)?",h:"Not all tracking has a POD. If it's unavailable, you can ask our supplier.",o:[["Yes","podY"],["No","podN"]]},
+    podY:{r:"Handle with POD",s:["Share the proof of delivery.","Follow the macro for next steps."],m:["podYes"]},
+    podN:{r:"Handle without POD",s:["Ask our supplier if they can provide a POD.","If no POD is available, follow the macro for a reship."],m:["podNo"]}
+  },
+  policy:[["Theoretical Knowledge – Order status",L.status],["Loom: Order status explained","https://www.loom.com/share/d487f7910d9a44a8a46cd88be2dbdd83?sid=56a99d2d-3d3d-4299-8d9c-e8a8c9a5ba80"],["Loom: Sharing local tracking",L.localTrack],["Miro flowchart (original)","https://miro.com/app/board/uXjVKUEGSnQ=/?moveToWidget=3458764588096618916&cot=14"],["Loom: Flowchart walkthrough","https://www.loom.com/share/c03f606e2fc44d4690fe553a62eeb6df?sid=dc229fa9-03d6-428f-9054-ca4ff55e1923"]],
+  macros:["delay","onway","dest","delivered","unf35","unf5","unf5b","podYes","podNo"],
+  examples:[["On the way",[ZB(20002)]],["In destination country",[ZB(9728)]],["Delivered",[ZB(183604)]],["Delivered, with POD",[ZB(1465)]]],
+  quiz:[
+    {q:"The supplier added a reship tracking number from China. What do you send the customer?",o:["The Chinese tracking number","The local carrier tracking","Nothing until it's delivered"],a:1,w:"Never forward the Chinese number. Find the local tracking so the customer can contact the carrier."},
+    {q:"Order is unfulfilled after 4 days. Which macro?",o:["Unfulfilled - within 3-5 days","Unfulfilled more than 5 days","Reship - No POD"],a:0,w:"It's still within the normal processing window."}
+  ]
+},
+cancel:{
+  title:"I want to cancel my order", icon:"✋", short:"Cancellation requests",
+  intro:"Explain our cancellation policy clearly. Most cases need only one or two replies.",
+  notes:{bright:"Orders can't be cancelled once they have been processed."},
+  rules:["Read the Cancelation knowledge doc before handling your first cancellation."],
+  flow:{
+    start:{q:"Is this your first reply on the cancellation?",o:[["Yes","c1"],["No, they wrote back","c2"]]},
+    c1:{r:"Explain the policy",s:["Send the cancellation policy explanation."],m:["cancel1"]},
+    c2:{r:"Send the second explanation",s:["Send Email 2.","If they still insist, flag to your lead."],m:["cancel2"]}
+  },
+  policy:[["Theoretical Knowledge – Cancelation",L.cancel],["Loom: Cancelation explained","https://www.loom.com/share/127fc40cd5594ef98f8af5a4014626e6?sid=38371dbe-6a31-4e0f-865c-7853d56fa109"],["Miro flowchart (original)","https://miro.com/app/board/uXjVKUEGSnQ=/?moveToWidget=3458764588097013693&cot=14"],["Loom: Flowchart walkthrough","https://www.loom.com/share/79ec7ee5743945c28232512b8abd25f9?sid=904747cd-d7ed-49df-a3d0-17e4c6bc380e"]],
+  macros:["cancel1","cancel2"],
+  examples:[["Cancellation handled well",[ZB(16487),ZB(8916)]]],
+  quiz:[{q:"A customer replies again after your first cancellation explanation. What next?",o:["Cancel immediately","Send Cancelation - Email 2","Ignore the ticket"],a:1,w:"Send the second explanation. Flag to your lead if they still insist."}]
+},
+exchange:{
+  title:"I want to exchange my order", icon:"🔁", short:"Size or product swaps",
+  intro:"Exchanges are Option 1 of our return options, so the same 30-day window applies.",
+  notes:{bright:"Sizing: before confirming an exchange, check which size they wear and point them to the size chart.",link:["Open size chart",L.sizeChart]},
+  rules:["Exchanges must be requested within 30 days of delivery."],
+  flow:{
+    start:{q:"Is it within 30 days of delivery?",o:[["Yes","prod"],["No, 30+ days","x30"]]},
+    x30:{r:"Explain the window has passed",s:["Send the 30+ days exchange macro."],m:["ex30"]},
+    prod:{q:"Did they say which product or size they want?",o:[["No","xNo"],["Yes","xYes"]]},
+    xNo:{r:"Ask what they'd like instead",s:["Accept the exchange and ask which product or size they want."],m:["exNoProd"]},
+    xYes:{r:"Send the invoice",s:["Prepare the exchange invoice and send it to the customer."],m:["exInvoice"]}
+  },
+  policy:[["Theoretical Knowledge – Exchange",L.exchange],["Bright Footwear size chart",L.sizeChart,"Check the right size before confirming an exchange"],["Loom: Exchange explained","https://www.loom.com/share/a6755e5ea0a54b22942abf9c3d8624cb"],["Miro flowchart (original)","https://miro.com/app/board/uXjVKUEGSnQ=/?moveToWidget=3458764588097656073&cot=14"],["Loom: Flowchart walkthrough","https://www.loom.com/share/a6755e5ea0a54b22942abf9c3d8624cb?sid=047ad0db-d210-4464-8cce-8c8574f4a31c"]],
+  macros:["ex30","exNoProd","exInvoice"],
+  examples:[["Exchange handled well",[ZB(19303),ZB(10902)]]],
+  quiz:[{q:"A customer wants a different size and already told you which one. Which macro?",o:["Accept Option 1 (Invoice send to Customer)","Accept Option 1 (did not mention product)","Not possible because 30+ days"],a:0,w:"They named the product, so go straight to the invoice."}]
+}
+};
+
+const LOOM_NOTE = `<div class="note bright"><b>Looms are yet to be updated</b>Some videos may still show old option numbers or old rules. If a video and this playbook differ, follow the playbook.</div>`;
+CH.phone = {
+  channel:"phone", title:"Phone support", icon:"📞", short:"Inbound calls, call-backs & follow-ups",
+  intro:"Every call is a chance to help and to sell. Identify the call type in the first 30 seconds, follow the flow, and log every call.",
+  notes:{bright:"Phone hours: Monday–Sunday, 9:00 AM–5:00 PM EST on our Quo line. Our core callers are often 55–65+ and may need products explained before buying."},
+  tabs:[["overview","Overview"],["flow","Call flow"],["scripts","Scripts & FAQs"],["followup","Follow-up calls"],["logging","Call logging"],["policy","Resources"],["quiz","Quiz"]],
+  rules:["Phone support follows the same policies as email support.","Answer or return 100% of calls. Missed calls must be called back within 12 hours (next day at the latest).","Log every call in the Call Log right after it ends: answered, missed, voicemail or call-back.","Never promise a refund or cancellation on the call before checking Shopify or escalating."],
+  flow:{
+    start:{q:"What kind of call is this?",o:[["Live call — I'm answering now","greet"],["Missed call or voicemail","missed"],["I'm making a follow-up call","fu"]]},
+    greet:{q:"Greet, then find out what the call is about.",h:"Say: “Hi, thank you for calling Bright Footwear, this is [Name], how can I help you?” Identify the call type within 30 seconds.",o:[["Question about an existing order","exist"],["New prospect / interested in buying","pros"]]},
+    exist:{q:"What is the customer asking about?",h:"Ask for the order number or email and look it up in Shopify.",o:[["Where is my order / can't track it","pTrack"],["Wants to cancel","pCancel"],["Insists on a refund","pRefund"],["Return, exchange or sizing","pReturn"],["Asks where we're located","pLoc"],["Something else","pOther"]]},
+    pTrack:{r:"Flag it and promise an update",s:["Apologise for the trouble and say you've flagged it with the team.","Tell them they'll get an update by tomorrow.","Ask how they want the update: email or a callback. Note their preferred callback time.","Log the call as Existing Order."],m:[],lk:[["Open Call Log",L.callLog]]},
+    pCancel:{q:"When was the order placed?",o:[["Within the last 5–10 minutes","pCanNew"],["Earlier / already processed","pCanOld"]]},
+    pCanNew:{r:"Check Shopify before promising anything",s:["Say you'll check the order right away.","If fulfilment hasn't picked it up yet, cancel it and confirm by email.","If it's already processing, apologise and explain we'll help with a return once it arrives.","Don't promise a cancellation before checking, and don't offer a refund on the call."],m:[]},
+    pCanOld:{r:"Explain it can't be cancelled",s:["Be empathetic but firm: the order is processed and can't be cancelled.","Reassure them the team is here to help if they're not happy once it arrives.","Don't offer a refund."],m:[]},
+    pRefund:{r:"Escalate and book a callback",esc:true,s:["Acknowledge their concern and say you'll escalate to the senior team.","Ask for the best time to call them back.","Don't promise that the refund will be approved.","Post the case in the CS-TEAM Slack channel using the Slack format in Store Policy Guidelines."],m:[]},
+    pReturn:{r:"Help, then send the steps by email",s:["Look up the order in Shopify.","For sizing, check the size chart together.","Explain the options, then follow the Email support chapters for next steps and send instructions by email.","Log the call as Existing Order."],m:[],lk:[["Open size chart",L.sizeChart]]},
+    pLoc:{r:"Explain we're an online store",s:["Say we're online-based, so they can shop anytime from anywhere.","You can mention our office: Bright Enterprise LLC, 30 N Gould St, Suite N, Sheridan, WY 82801.","Don't offer the office as a walk-in location. It's for admin only."],m:[]},
+    pOther:{r:"Resolve or escalate",s:["Resolve it directly, or escalate via Slack if it's technical.","Confirm it's resolved and offer further help.","Log the call as Existing Order."],m:[]},
+    pros:{q:"Where is the customer at?",o:[["Has a need or question (foot pain, sizing, fit…)","pNeed"],["Ready to buy","pBuy"],["Hesitating on price","pHes"],["Asks why the phone discount is lower than the website","pDisc"]]},
+    pNeed:{r:"Discover, recommend, reassure",s:["Ask what they need help with: foot pain, back pain, neuropathy, sizing or fit.","Explain simply why barefoot shoes help.","Recommend the best product for their needs.","Reassure them: 30-day money-back guarantee, Trustpilot reviews, comfort testimonials, free shipping if applicable.","When they're ready, close on the call with a draft order."],m:[]},
+    pBuy:{r:"Close on the call with a draft order",s:["Stay on the call.","Create a Shopify draft order with the right product and size.","Send the payment link by SMS and/or email.","Say: “I've just sent you a link — complete payment and I'll make sure your order is processed today.”","Stay on the line until payment is done if possible, then log it as Closed Sale."],m:[],lk:[["Open Call Log",L.callLog]]},
+    pHes:{r:"Offer 5% only if they hesitate",s:["Try to close without a discount first.","If they still hesitate, offer 5% off (new customers only): “We already have a sale running, so I can't offer too much extra, but I can give you an additional 5% off if you'd like to try it today.”","Then close with a draft order and log the discount used."],m:[]},
+    pDisc:{r:"Explain phone and website offers are separate",s:["Explain that phone discounts are separate from website promotions.","Suggest they check the website for those deals.","Don't promise to match the website discount unless authorised."],m:[]},
+    missed:{r:"Call back within 12 hours",s:["Return the call within 12 hours (next day at the latest).","Say: “Hi [Name], this is [Agent] from Bright Footwear. I saw you tried to reach us — apologies we missed you, we had a team meeting. What can I help you with today?”","Go straight into what they need, then follow the call flow.","Log the call-back in the Call Log."],m:[],lk:[["Open Call Log",L.callLog]]},
+    fu:{q:"What are you following up on?",o:[["Abandoned cart","fuCart"],["A prospect we spoke to before","fuPros"],["A pending draft invoice","fuInv"]]},
+    fuCart:{r:"Abandoned-cart call",s:["Explain their order didn't fully go through and ask if everything's okay.","Ask if there was a reason checkout didn't work out, then listen.","Handle the objection (see Follow-up calls tab).","Offer to complete the order together or send the link by email or SMS.","Only if they hesitate: offer up to 5% off, never more.","No answer? Leave the short voicemail."],m:[]},
+    fuPros:{r:"Follow up on the earlier chat",s:["Remind them who you are and what you talked about. Ask if it's a good time.","Ask if they saw the link you sent, or if any questions came up. Then pause and let them answer.","Ready: resend the link. Still thinking: offer to clear up sizing or returns. Not buying: thank them warmly.","Mention when their discount expires only if they're open to it."],m:[]},
+    fuInv:{r:"Follow up on the pending invoice",s:["Remind them of the offer and that the invoice is ready but still pending.","Ask if they had any trouble with payment.","Offer to resend the payment link by email or SMS."],m:[]}
+  },
+  policy:[["Bright Footwear US Phone Support SOP",L.phoneSop,"Full call handling and sales conversion process"],["Phone Support FAQ & Objection Handling Guide",L.phoneGuide],["Phone Script for Follow-up Calls",L.phoneFu],["Bright Footwear Call Logs",L.callLog,"Log every call here"],["Quo (CRM we use for calls)",L.quo],["Customs delay: proactive outreach process",L.customs]],
+  macros:[], examples:[],
+  quiz:[
+    {q:"You missed a call this morning. By when must you call back?",o:["Within 12 hours","Within 3 days","Only if they leave a voicemail"],a:0,w:"Every missed call is returned within 12 hours, next day at the latest."},
+    {q:"A caller is ready to buy. What do you do?",o:["Tell them to order on the website","Create a draft order and send the payment link while they're on the call","Email them a discount code"],a:1,w:"Close on the call: draft order, send the link by SMS or email, and stay on the line if you can."},
+    {q:"What commission do you earn on a closed phone sale?",o:["5% of the total price","7% of the total price","10% of the total price"],a:1,w:"You earn 7% commission of the total price on every closed phone sale."},
+    {q:"No calls are coming in. What should you do?",o:["Wait by the phone","Follow up pending drafts and abandoned carts, then answer emails","Close Quo"],a:1,w:"Follow up pending draft orders and abandoned carts first, then answer emails while waiting. Calls always come first."},
+    {q:"A caller insists on a refund. What do you say?",o:["Promise the refund","Say refunds aren't possible","Escalate to the senior team and book a callback"],a:2,w:"Never promise refund approval on the phone. Escalate and arrange a follow-up call."},
+    {q:"When can you offer the 5% phone discount?",o:["At the start of every call","Only if a new customer hesitates","Whenever they ask for the website discount"],a:1,w:"Try to close without a discount first. 5% is for hesitating new customers only."}
+  ]
+};
+
+const FAQ = [
+  ["General","Where are you located?","We're an online-based store, so you can shop with us anytime from anywhere! We do have a physical office at Bright Enterprise LLC, 30 N Gould St, Suite N, Sheridan, WY 82801 — but all purchases and support are handled online.","Don't offer the office address as a walk-in location. It's for admin only."],
+  ["Shipping","I can't track my shipment / no local tracking","I completely understand how frustrating that can be, and I'm sorry for the inconvenience! I've already flagged this with our team, and we're looking into it right away. You can expect an update by tomorrow. We'll keep you in the loop via email — or if you prefer, we can give you a call tomorrow. Which works best for you?","Always ask for their preferred contact method and log their callback time."],
+  ["Order","I want to cancel (already processed)","I totally understand, and I appreciate you reaching out! Unfortunately, because your order has already been processed and is on its way, we're unable to cancel it at this point. But once you receive it, I'm confident you'll love it! If for any reason you're not satisfied, our team is always here to help.","Do NOT offer a refund. Be empathetic but firm."],
+  ["Order","I want to cancel (placed 5–10 minutes ago)","I completely understand, thank you for reaching out so quickly! Let me check your order status right away. If it hasn't been picked up by our fulfilment team, I'll do my best to cancel it. [If cancelled:] Great news, your order is cancelled and you'll get a confirmation email shortly. [If not:] I'm so sorry, your order has already moved into processing. Once it arrives, our team will be happy to help you with a return.","Always check Shopify before confirming either way. If not possible, move to the returns process and don't offer a refund on the call."],
+  ["Promo","Why is the phone discount 5% but 20% on the website?","Great question! The discounts we offer over the phone are separate from the promotions on our website. Our website runs its own exclusive deals that may not always be available by phone. We recommend checking the website directly — we'd love for you to get the best deal possible!","Don't promise to match the website discount unless authorised."],
+  ["Refund","Customer insists on a refund","I hear you, and I completely understand your concern. I want to make sure this gets handled properly, so I'm going to escalate it to our senior team to find the best resolution. What's the best time for us to call you back?","Ask for the best callback time. Don't promise refund approval."],
+  ["Order","Follow-up: pending draft invoice","Hi [Customer Name], this is [Name] from Bright Footwear. I'm following up on the offer we discussed. We've arranged the invoice for you, and I noticed it's still pending. Are you ready to proceed, or did you have any trouble completing the payment? I can resend the payment link if needed.","Offer to send the link by email or SMS."]
+];
+
+const RENDER = {
+  overview(){
+    const tool=(icon,name,desc,url)=>`<a class="tool" href="${url}" target="_blank" rel="noopener"><span class="ti">${icon}</span><span><b>${esc(name)}</b><small>${esc(desc)}</small></span></a>`;
+    return `<div class="section" style="margin-top:0"><h2>Your role</h2>
+    <div class="duo"><div class="duocard"><b>💬 Answer customer inquiries</b><span>Help existing customers with orders, tracking, returns, sizing and more.</span></div>
+    <div class="duocard"><b>💰 Close sales for new prospect callers</b><span>Every new caller is a potential sale. Guide them to the right product and close on the call.</span></div></div></div>
+    <div class="section"><h2>Key numbers</h2>
+    <div class="stats"><div class="stat"><span class="num">7%</span><span>commission of the total price on every closed phone sale</span></div>
+    <div class="stat"><span class="num">5%</span><span>maximum discount you can give, only if the customer hesitates</span></div>
+    <div class="stat"><span class="num">12h</span><span>to call back every missed call</span></div></div></div>
+    <div class="note bright"><b>Same policies as email</b>All store policies apply on the phone too: returns, refunds, exchanges and cancellations. When in doubt, check the <a href="#" data-golink="spg">Store Policy Guidelines</a> or the email chapters.</div>
+    <div class="section"><h2>Daily routine</h2>
+    <ol class="steps">
+    <li><b>Check pending draft orders.</b> Open the Call Log and find prospects with a pending draft invoice.</li>
+    <li><b>Check abandoned carts.</b> Find customers whose checkout didn't go through.</li>
+    <li><b>Make the follow-up calls.</b> Use the follow-up scripts for abandoned carts and pending prospects. Log every call.</li>
+    <li><b>Answer emails while waiting for calls.</b> Work on Zendesk tickets between calls. Incoming calls always come first.</li>
+    <li><b>Return missed calls</b> within 12 hours and log them.</li></ol></div>
+    <div class="section"><h2>Tools</h2><div class="tools">
+    ${tool("☎️","Quo","The CRM we use for calls",L.quo)}
+    ${tool("📋","Call Logs","Log every call here",L.callLog)}
+    ${tool("📖","Phone Support Guide","FAQs and objection handling",L.phoneGuide)}
+    ${tool("🔁","Follow-up scripts","Abandoned carts and pending prospects",L.phoneFu)}
+    </div></div>`;
+  },
+  scripts(){
+    return `<p style="color:var(--muted);margin-top:0">Suggested scripts for common phone questions. Use your own words, but keep the key points and follow the note.</p>
+    ${FAQ.map(f=>`<details class="faq"><summary><span class="tag">${esc(f[0])}</span>${esc(f[1])}</summary><p class="script">“${esc(f[2])}”</p><p class="fnote"><b>Note:</b> ${esc(f[3])}</p></details>`).join("")}`;
+  },
+  followup(){
+    return `<div class="group"><h3>Abandoned-cart call</h3><ol class="steps">
+    <li><b>Greeting & context.</b> “Hi, this is [Name] from Bright Footwear. Is now a good time for a quick call? I'm reaching out because your order didn't fully go through, and I wanted to make sure everything's okay.”</li>
+    <li><b>Ask for the reason, then listen.</b> “May I quickly ask, was there a specific reason checkout didn't work out?”</li>
+    <li><b>Handle the objection.</b> Price: the product lasts longer than cheaper options. Shipping: give the current delivery time and offer tracking. Sizing: help with size and explain the easy return process. Trust: reviews, return policy, reachable support. Payment: troubleshoot or offer another payment method. Just browsing: no pressure.</li>
+    <li><b>Offer to close.</b> “I can complete the order with you right now, or send you the link by email or SMS.”</li>
+    <li><b>Incentive only if they hesitate.</b> “As a small thank-you, I can give you 5% off if we complete it now.” 5% is the maximum.</li>
+    <li><b>Close.</b> “Great, thank you! If anything else comes up, feel free to reach out.”</li></ol>
+    <p class="fnote"><b>Voicemail:</b> “Hi, this is [Name] from Bright Footwear. Your order didn't go through completely and I wanted to check everything's okay. If you're still interested, give me a call back and I'll help you sort it. Have a great day!”</p></div>
+    <div class="group"><h3>New prospect follow-up</h3><ol class="steps">
+    <li><b>Opening.</b> “Hi [First name], it's [Agent] from Bright Footwear again. We chatted [yesterday] about [topic]. Is now a good time?” If busy: “No problem at all! Have a good one!”</li>
+    <li><b>Check in, then pause.</b> Draft sent: “Did you have a chance to look at the link I sent, or did any questions come up?” No draft: “Did you get a chance to place your order? If not, I'm happy to help.”</li>
+    <li><b>Respond to where they are.</b> Didn't see the link: offer to resend it. Still thinking: offer to clear up sizing or returns. New question: answer it, then ask “Does that help?” Ready: resend the link. Not buying: thank them; their cart will still be there.</li>
+    <li><b>Gentle close, only if they're open.</b> “Your [discount] is good until [date]. Just didn't want you to miss it.”</li>
+    <li><b>Wrap up.</b> “Thanks again, [First name]. Whatever you decide, we're here if you need anything.”</li></ol>
+    <p class="fnote"><b>Voicemail:</b> “Hi [First name], it's [Name] from Bright Footwear, following up on our chat about the [product]. No pressure at all. Your link and [discount] are still good until [date]. Call us at [number] with any questions. Take care!”</p></div>
+    <p><a href="${L.phoneFu}" target="_blank" rel="noopener">Open the full follow-up script</a></p>`;
+  },
+  logging(){
+    const rows=[["Date & time","When the call came in or was made"],["Agent","Who handled the call"],["Customer name","First and last name"],["Phone number","For call-backs"],["Email","If provided"],["Call type","Inbound or outbound (call-back)"],["Call category","Existing Order, New Prospect or Other"],["Status","Answered, Voicemail, Called Back or No Answer"],["Outcome","Closed Sale, Resolved, Pending or Lost"],["Order # / cart value","If a sale was closed"],["Discount used","Yes or no, plus the code name"],["Notes","Short summary and next steps"]];
+    return `<div class="note rule"><b>Rule</b>Every call is logged right after it ends — answered, missed, voicemail or call-back. No exceptions.</div>
+    <div style="overflow-x:auto"><table class="tbl"><thead><tr><th>Field</th><th>What to enter</th></tr></thead><tbody>${rows.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join("")}</tbody></table></div>
+    <p style="margin-top:16px"><a class="hdr-link" href="${L.callLog}" target="_blank" rel="noopener">Open Bright Footwear Call Logs</a></p>`;
+  }
+};
+
+function spg(){
+  const pl = `<a href="${L.problemSheets}" target="_blank" rel="noopener">Problem Sheet folder</a>`;
+  const mk = (n,u)=>`<a href="${u}" target="_blank" rel="noopener">${esc(n)}</a>`;
+  return `<div class="ch-head"><h1>📘 Store Policy Guidelines</h1><p>The ground rules for every ticket and call. Read and understand the customer's message completely, and answer with compassion: they're reaching out because they need us.</p></div>
+  <div class="section"><h2>General guidelines</h2><ul class="plist">
+  <li>The most important part is to <b>understand what the customer is asking for</b>.</li>
+  <li><b>Always answer with a macro.</b> We have one for every request, so every customer gets the same quality answer. Don't write your own text. ${mk("Macro Database",L.mdb)}</li>
+  <li><b>Angry customer mentioning a lawyer or similar?</b> Escalate to Beverly.</li>
+  <li><b>Log every refund, resend and store credit</b> in the current month's Problem Sheet: ${pl}. ${mk("Watch how to use it",L.psLoom)}</li></ul></div>
+  <div class="section"><h2>Refund essentials</h2><ul class="plist">
+  <li>Returns are eligible within <b>30 days of delivery</b>.</li>
+  <li>Refunds are not immediate. <b>Wait until our returns warehouse has received the item.</b> ${mk("Return Sheet",L.returnSheet)}</li>
+  <li>A <b>restocking fee</b> is deducted from every refund: <b>$8.50 per pair of shoes</b> and <b>$4.75 per accessory</b>.</li>
+  <li>Every refund is logged in the Problem Sheet. <b>Bev facilitates all refunds</b>, so coordinate with her. ${mk("Refund Policy V3",L.refund)}</li></ul></div>
+  <div class="section"><h2>Handling Zendesk</h2><ol class="steps">
+  <li><b>Work from “All Unsolved Tickets”</b>, sorted by <b>Updated</b>, so the customers waiting longest are answered first.</li>
+  <li><b>Submit with the right status.</b> Solved: the request is fully handled. Pending: only when waiting on someone else (escalated to Bev, waiting for the supplier, or waiting for Bev's approval). Never submit as Closed.</li>
+  <li><b>Escalate</b> by setting the ticket to Pending, then posting the ticket link in the CS-TEAM Slack channel and tagging Beverly.</li></ol>
+  <div class="note rule"><b>Important</b>Don't set a ticket to Solved or Pending if the concern isn't handled or escalated yet. Pending tickets leave the open view, so the customer may never get a reply.</div></div>
+  <div class="section"><h2>Quick guide by request</h2><div style="overflow-x:auto"><table class="tbl"><thead><tr><th>Request</th><th>What to do</th></tr></thead><tbody>
+  <tr><td><b>Wants to return</b></td><td>Ask the reason and check it's within 30 days. Use ${mk("Return - 3 Options","https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#gid=480624165&range=72:72")}. When tracking shows it's back with us, request the refund in the Problem Sheet.</td></tr>
+  <tr><td><b>Wants to exchange</b></td><td>Too big, too small or doesn't fit: ${mk("Exchange - Offer Exchange","https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#rangeid=337845245")}. Still wants to return: ${mk("Return 2 - Options (Declines Offer exchange)","https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#rangeid=991731289")}.</td></tr>
+  <tr><td><b>Wants to cancel</b></td><td>Once placed, an order can't be cancelled, even if unfulfilled. Use ${mk("Cancelation - Explanation Policy","https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#gid=480624165&range=2:2")}, then ${mk("Email 2","https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#gid=480624165&range=77:77")} if they argue.</td></tr>
+  <tr><td><b>Damaged / quality issue</b></td><td>Ask for photos with ${mk("Damage - Ask for pictures","https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#gid=480624165&range=3:3")}. If it's a quality issue and they agree to a reship: ${mk("Order Issues - Damaged item (Reship confirmation)","https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#rangeid=275660932")}. Record it in the Problem Sheet.</td></tr>
+  <tr><td><b>Missing item / order</b></td><td>Ask for photos with ${mk("Order - Ask for pictures of missing items","https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#gid=480624165&range=10:10")}. Check if it was sent in 2 packages (${mk("Send in 2 separate shipments","https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#gid=480624165&range=79:79")}). If they agree to a reship: ${mk("Missing item (Reship confirmation)","https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit#gid=480624165&range=13:13")}. Record it in the Problem Sheet.</td></tr>
+  <tr><td><b>Returned to sender</b></td><td>Check tracking. If it shows returned, request a refund in the ${mk("Problem Sheet - CS","https://drive.google.com/drive/folders/1BMY-rprfQyCxBw_e98-SibZ1a1i5SHzP")}.</td></tr>
+  </tbody></table></div></div>
+  <div class="section"><h2>Finding local tracking & proof of delivery</h2><ol class="steps">
+  <li>Go to ${mk("parcelsapp.com","https://parcelsapp.com/en/tracking/")}.</li>
+  <li>Enter the Yun Express tracking number.</li>
+  <li>At the bottom right, find the local courier and the local (last-mile) tracking number.</li>
+  <li>Open the local courier's website with that number.</li>
+  <li>Click <b>View Full Tracking Details</b> to see the photo proof of delivery.</li></ol></div>
+  <div class="section"><h2>Slack communication</h2>
+  <div class="group"><h3>CS Team channel (for Bev)</h3><p>Start with a priority color: ⚪ White = low, 🔵 Blue = medium, 🔴 Red = urgent.</p>
+  <pre class="tmpl">[Color] [Order Number – Subject/Action Needed]
+Issue: What happened and what you've already done
+Action Needed: What needs to be done
+Ticket Link / Phone Link: [link]
+
+Example:
+[US12345 – Request to Cancel and Refund]
+Issue: Customer placed a duplicate order and wants to cancel it. Logged in the PS for your approval.
+Action Needed: Please cancel and refund
+Ticket Link / Phone Link: [link]</pre></div>
+  <div class="group"><h3>Supplier channel (for Lorraine)</h3>
+  <pre class="tmpl">[Order Number – Action Needed]
+Issue: Short explanation + PS cell number if applicable
+Action Needed: What needs to be done
+Ticket Link / Phone Link: [link]
+@Lorraine
+
+Example:
+[US12345 – Send the Correct Item]
+Issue: Customer received the wrong item. Cell 158.
+Action Needed: Please send the correct item.
+Ticket Link / Phone Link: [link]
+@Lorraine</pre></div>
+  <p class="fnote">Keep it short and specific, always include the order number and link, and use the right color so requests are easy to track.</p></div>
+  <p><a class="hdr-link" href="${L.spg}" target="_blank" rel="noopener">Open the full Store Policy Guidelines</a></p>`;
+}
+
+const NEWS = [
+  {d:"October 7",t:"Option 3: refund only after the warehouse accepts the return",p:["Don't refund as soon as tracking arrives. Wait until the return is accepted in our return warehouse.","Check the Return Sheet to see if it has been received."],l:["Return Sheet",L.returnSheet]},
+  {d:"September 2",t:"Returns sent without telling us",p:["Customers can return without notifying us only within 14 days of receiving the order.","After 14 days with no written cancellation, the order is binding and we may refuse the refund. Decide case by case."],l:["[Bright Footwear] Refund Policy V3",L.refund]},
+  {d:"July 17",t:"Reship tracking: never send the Chinese number",p:["When the supplier adds tracking for a reship, it's the Chinese number. Find the local tracking and send that instead."],l:["Loom: sharing local tracking",L.localTrack]},
+  {d:"July 1",t:"Delivered orders: share local tracking",p:["If the status shows Delivered, track it in Parcel Panel and share the local tracking so the customer can contact the carrier."],l:["Loom: sharing local tracking",L.localTrack]}
+];
+
+// ---------- state ----------
+const store = {get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let brand = "bright";
+let quizDone = store.get("pb-quiz",{});
+let route = {page:"home",tab:"flow"};
+let path = ["start"];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const PAGES = [["home","👋","Start here"],["spg","📘","Store Policy Guidelines"],["phone","📞","Phone support"],["sep"],...Object.entries(CH).filter(([k,c])=>!c.channel).map(([k,c])=>[k,c.icon,c.title]),["sep"],["news","🆕","What's new"],["sheets","📄","Hard copy sheets"],["help","🎥","Helpful videos & questions"]];
+
+function renderNav(){
+  const items = PAGES.map(p=>{
+    if(p[0]==="sep") return '<li class="sep" aria-hidden="true"></li>';
+    if(p[0]==="label") return '<li class="navlabel">'+esc(p[1])+'</li>';
+    const cur = route.page===p[0]?' aria-current="page"':"";
+    const badge = p[0]==="news"?'<span class="badge">'+NEWS.length+'</span>':"";
+    return `<li><button data-go="${p[0]}"${cur}><span aria-hidden="true">${p[1]}</span>${esc(p[2])}${badge}</button></li>`;
+  }).join("");
+  $("#nav").innerHTML = items;
+  $("#mnav").innerHTML = PAGES.filter(p=>p[0]!=="sep"&&p[0]!=="label").map(p=>`<button data-go="${p[0]}"${route.page===p[0]?' aria-current="page"':""}>${p[1]} ${esc(p[2])}</button>`).join("");
+}
+
+function brandNote(c){
+  const n = c.notes[brand]; if(!n) return "";
+  const lk = c.notes.link && brand==="bright" ? ` <a href="${c.notes.link[1]}" target="_blank" rel="noopener">${esc(c.notes.link[0])}</a>` : "";
+  return `<div class="note ${brand}"><b>${brand==="bright"?"Bright Footwear":"Renesia"}</b>${esc(n)}${lk}</div>`;
+}
+
+function home(){
+  return `<div class="hero"><h1>Welcome to the team</h1>
+  <p>This playbook helps you answer customers quickly and correctly, by email and by phone. Pick the channel and what the customer needs, answer a few questions, and you'll get the exact steps, script or macro to use.</p></div>
+  <div class="picker"><button class="pick" data-go="spg"><strong>📘 Store Policy Guidelines</strong><span>Start here: ground rules, Zendesk handling, refunds & Slack format</span></button><button class="pick" data-go="phone"><strong>📞 Phone support</strong><span>Inbound calls, call-backs, follow-ups & scripts</span></button></div>
+  <div class="picker">${Object.entries(CH).filter(([k,c])=>!c.channel).map(([k,c],i)=>`<button class="pick${i===0?" main":""}" data-go="${k}"><strong>${c.icon} ${esc(c.title)}</strong><span>${esc(c.short)}${i===0?" · most common":""}</span></button>`).join("")}</div>
+  <div class="section"><h2>About Bright Footwear</h2><p class="prose">Bright Footwear is a footwear brand. Customers usually ask about sizing, fit, exchanges and delivery, so it's important to understand the products, sizing, use cases and customer expectations. Look for the yellow Bright Footwear tips in each chapter.</p></div>
+  <div class="section"><h2>How to learn each topic</h2>
+  <ol class="steps"><li><b>Walk the flow.</b> Answer the questions to see what to do in each situation.</li><li><b>Read the policy and watch the videos.</b> Short Looms explain the why. <i>(Some videos and tutorials are yet to be updated.)</i></li><li><b>Know your macros.</b> Every saved reply links straight to the Macro Database.</li><li><b>Study real examples.</b> Tickets handled the right way.</li><li><b>Take the quiz.</b> Then do a 1:1 check-in with your team lead.</li></ol>
+  <p class="prose" style="color:var(--muted)">Your team lead will also review a sample of your tickets regularly to give feedback.</p></div>`;
+}
+
+function chapter(k){
+  const c = CH[k];
+  const tabs = (c.tabs||[["flow","Guided flow"],["policy","Policy & videos"],["macros","Macros"],["examples","Examples"],["quiz","Quiz"]]).map(t=>t[0]==="quiz"?[t[0],t[1]+(quizDone[k]?" ✓":"")]:t);
+  let body="";
+  if(route.tab==="flow") body = flowView(k);
+  if(route.tab==="policy") body = `${c.rules.map(r=>`<div class="note rule"><b>Rule</b>${esc(r)}</div>`).join("")}<ul class="linklist">${c.policy.map(p=>`<li><a href="${p[1]}" target="_blank" rel="noopener">${esc(p[0])}${p[2]?`<small>${esc(p[2])}</small>`:""}</a></li>`).join("")}</ul>`;
+  if(route.tab==="macros") body = `<input class="filter" id="mf" placeholder="Filter macros…" aria-label="Filter macros"><div class="macros" id="ml">${macroList(c.macros)}</div>`;
+  if(route.tab==="examples") body = `<p style="color:var(--muted);margin-top:0">Real Bright Footwear tickets handled the right way.</p>${c.examples.map(g=>`<div class="group"><h3>${esc(g[0])}</h3><div class="tickets">${g[1].map(u=>`<a href="${u}" target="_blank" rel="noopener">#${u.split("/").pop()}</a>`).join("")}</div></div>`).join("")}`;
+  if(route.tab==="quiz") body = quizView(k);
+  if(RENDER[route.tab]) body = RENDER[route.tab]();
+  return `<div class="ch-head"><h1>${c.icon} ${esc(c.title)}</h1><p>${esc(c.intro)}</p></div>
+  <div class="tabs" role="tablist">${tabs.map(t=>`<button role="tab" data-tab="${t[0]}" aria-selected="${route.tab===t[0]}">${t[1]}</button>`).join("")}</div>
+  ${brandNote(c)}${body}`;
+}
+
+function macroList(keys){return keys.map(m=>`<div class="macro" data-name="${esc(M[m][0].toLowerCase())}"><span>${esc(M[m][0])}</span><a href="${mlink(m)}" target="_blank" rel="noopener">Open macro</a></div>`).join("")}
+
+function flowView(k){
+  const f = CH[k].flow;
+  const trail = path.slice(0,-1).map((id,i)=>{
+    const node=f[id], next=path[i+1];
+    const ans=(node.o.find(o=>o[1]===next)||[""])[0];
+    return `<li><span>${esc(node.q)}</span> <span class="ans">${esc(ans)}</span> <button data-back="${i}">change</button></li>`;
+  }).join("");
+  const cur = f[path[path.length-1]];
+  let card;
+  if(cur.r){
+    card = `<div class="qcard result${cur.esc?" esc":""}"><h3>${esc(cur.r)}</h3><ol>${cur.s.map(s=>`<li>${esc(s)}</li>`).join("")}</ol>
+    ${cur.m.length||cur.lk?`<div class="macros">${macroList(cur.m)}${(cur.lk||[]).map(l=>`<div class="macro"><span>${esc(l[0].replace("Open ",""))}</span><a href="${l[1]}" target="_blank" rel="noopener">Open</a></div>`).join("")}</div>`:""}
+    <div class="flow-actions"><button class="btn primary" data-restart>Start a new ticket</button>${cur.go?`<button class="btn" data-go="${cur.go}">Open ${esc(CH[cur.go].title)}</button>`:""}</div></div>`;
+  } else {
+    card = `<div class="qcard"><h3>${esc(cur.q)}</h3>${cur.h?`<p class="hint">${esc(cur.h)}</p>`:'<p class="hint">Choose one.</p>'}
+    <div class="opts">${cur.o.map(o=>`<button data-next="${o[1]}">${esc(o[0])}</button>`).join("")}</div>
+    ${path.length>1?`<div class="flow-actions"><button class="btn" data-back="${path.length-2}">Back</button></div>`:""}</div>`;
+  }
+  return `${trail?`<ol class="trail">${trail}</ol>`:""}${card}`;
+}
+
+function quizView(k){
+  const qs = CH[k].quiz;
+  return `<div class="quiz" id="quiz" data-ch="${k}">${qs.map((q,i)=>`<div class="qq" data-i="${i}"><p>${i+1}. ${esc(q.q)}</p><div class="opts">${q.o.map((o,j)=>`<button data-ans="${j}">${esc(o)}</button>`).join("")}</div></div>`).join("")}
+  <p class="score" id="score"></p></div>`;
+}
+
+function news(){
+  return `<div class="ch-head"><h1>🆕 What's new</h1><p>Policy updates, newest first. Check this before each shift.</p></div>
+  <div class="news" style="margin-top:24px">${NEWS.map(n=>`<article><time>${n.d}</time><h3>${esc(n.t)}</h3><ul>${n.p.map(p=>`<li>${esc(p)}</li>`).join("")}</ul><a href="${n.l[1]}" target="_blank" rel="noopener">${esc(n.l[0])}</a></article>`).join("")}</div>`;
+}
+
+function sheets(){
+  return `<div class="ch-head"><h1>📄 Hard copy sheets</h1><p>The full written documents behind this playbook. Open these when you need the complete policy text.</p></div>
+  <ul class="linklist" style="margin-top:24px">
+  <li><a href="${L.spg}" target="_blank" rel="noopener">[Bright Footwear] Store Policy Guidelines<small>General guidelines, Zendesk handling, escalations and store policies</small></a></li>
+  <li><a href="${L.refund}" target="_blank" rel="noopener">[Bright Footwear] Refund Policy V3<small>All return and refund rules</small></a></li>
+  <li><a href="${L.cheat}" target="_blank" rel="noopener">[Bright Footwear] Customer Support Cheat Sheet v2.0<small>Original cheat sheet with all chapters, macros and examples</small></a></li>
+  </ul>`;
+}
+
+function help(){
+  return `<div class="ch-head"><h1>🎥 Helpful videos & questions</h1></div>
+  <div class="section"><h2>Videos</h2><ul class="linklist">
+  <li><a href="https://www.loom.com/share/b174f410e5b64a809e2f112603db8185" target="_blank" rel="noopener">Introduction video<small>Watch this first</small></a></li>
+  <li><a href="https://www.loom.com/share/ba58eec085a54be29ebed03b71084210" target="_blank" rel="noopener">How to set reminders in Zendesk and Slack</a></li>
+  <li><a href="https://www.loom.com/share/16d641e74dab41e3be1c144b4c6edf2e" target="_blank" rel="noopener">Finding the local courier faster</a></li>
+  <li><a href="https://www.loom.com/share/b6fc793e0ca04e4aaf929ee93196ea59" target="_blank" rel="noopener">Issuing store credit via Rise App</a></li>
+  <li><a href="${L.mdb}" target="_blank" rel="noopener">Full Macro Database<small>Revised June 2025</small></a></li>
+  <li><a href="https://docs.google.com/document/d/1thm4Lm0v4EijxyfYR5eMQw5_sNXVYwLoezy3awnqY40/edit" target="_blank" rel="noopener">Cheat Sheet v2.0 (document copy)</a></li></ul></div>
+  <div class="section"><h2>Got a question that isn't covered?</h2><p class="prose">Post it in your team's open-questions thread or the Open Questions section of the document copy. We'll set up the workflow and add it here.</p></div>`;
+}
+
+function render(){
+  renderNav();
+  const v = $("#view");
+  if(route.page==="home") v.innerHTML = home();
+  else if(route.page==="news") v.innerHTML = news();
+  else if(route.page==="help") v.innerHTML = help();
+  else if(route.page==="sheets") v.innerHTML = sheets();
+  else if(route.page==="spg") v.innerHTML = spg();
+  else v.innerHTML = chapter(route.page);
+  
+}
+
+function go(page,tab){route={page,tab:tab||(CH[page]&&CH[page].tabs?CH[page].tabs[0][0]:"flow")};path=["start"];render();window.scrollTo(0,0);try{history.replaceState(null,"","#"+page)}catch(e){}}
+
+document.addEventListener("click",e=>{
+  const t = e.target.closest("button"); if(!t) return;
+  if(t.dataset.go){go(t.dataset.go);closeResults();return}
+  if(t.dataset.tab){route.tab=t.dataset.tab;path=["start"];render();return}
+  if(t.dataset.next){path.push(t.dataset.next);render();$(".qcard")&&$(".qcard").scrollIntoView({block:"nearest"});return}
+  if(t.dataset.back!==undefined){path=path.slice(0,+t.dataset.back+1);render();return}
+  if(t.hasAttribute("data-restart")){path=["start"];render();return}
+  if(t.dataset.b){brand=t.dataset.b;store.set("pb-brand",brand);render();return}
+  if(t.dataset.ans!==undefined){
+    const qq=t.closest(".qq"); if(qq.dataset.done) return;
+    const k=t.closest("#quiz").dataset.ch, q=CH[k].quiz[+qq.dataset.i], j=+t.dataset.ans;
+    qq.dataset.done=j===q.a?"1":"0";
+    qq.querySelectorAll("button").forEach((b,i)=>{if(i===q.a)b.classList.add("correct");else if(i===j)b.classList.add("wrong")});
+    qq.insertAdjacentHTML("beforeend",`<p class="why">${j===q.a?"Correct. ":"Not quite. "}${esc(q.w)}</p>`);
+    const all=[...document.querySelectorAll(".qq")];
+    if(all.every(x=>x.dataset.done)){
+      const sc=all.filter(x=>x.dataset.done==="1").length;
+      $("#score").textContent=`You got ${sc} of ${all.length}. ${sc===all.length?"Nice work — you're ready for your 1:1 check-in.":"Review the flow and try again."}`;
+      if(sc===all.length){quizDone[k]=true;store.set("pb-quiz",quizDone)}
+    }
+  }
+});
+
+document.addEventListener("click",e=>{const a=e.target.closest("a[data-golink]");if(a){e.preventDefault();go(a.dataset.golink)}});
+document.addEventListener("input",e=>{
+  if(e.target.id==="mf"){const q=e.target.value.toLowerCase();document.querySelectorAll("#ml .macro").forEach(m=>m.style.display=m.dataset.name.includes(q)?"":"none")}
+});
+
+// global search
+const INDEX = [];
+Object.entries(CH).forEach(([k,c])=>{
+  INDEX.push({label:c.icon+" "+c.title,sub:c.short,act:()=>go(k)});
+  c.macros.forEach(m=>INDEX.push({label:M[m][0],sub:"Macro · "+c.title,url:mlink(m)}));
+});
+INDEX.push({label:"📘 Store Policy Guidelines",sub:"Guide · restocking fee, Zendesk, Slack format",act:()=>go("spg")},{label:"Phone scripts & FAQs",sub:"Phone support",act:()=>go("phone","scripts")},{label:"Store Policy Guidelines (doc)",sub:"Hard copy sheet",url:L.spg},{label:"Refund Policy V3",sub:"Hard copy sheet",url:L.refund},{label:"Cheat Sheet v2.0",sub:"Hard copy sheet",url:L.cheat});
+NEWS.forEach(n=>INDEX.push({label:n.t,sub:"What's new · "+n.d,act:()=>go("news")}));
+const seen=new Set(); const IDX=INDEX.filter(i=>{const key=i.label+(i.url||"");if(seen.has(key))return false;seen.add(key);return true});
+function closeResults(){$("#results").classList.remove("open")}
+$("#q").addEventListener("input",e=>{
+  const q=e.target.value.trim().toLowerCase(), box=$("#results");
+  if(!q){closeResults();return}
+  const hits=IDX.filter(i=>(i.label+" "+i.sub).toLowerCase().includes(q)).slice(0,12);
+  box.innerHTML = hits.length?hits.map((h,i)=>`<button data-hit="${IDX.indexOf(h)}">${esc(h.label)}<br><small>${esc(h.sub)}</small></button>`).join(""):`<button disabled>No matches. Try “refund”, “tracking” or “damage”.</button>`;
+  box.classList.add("open");
+});
+$("#results").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-hit]"); if(!b) return;
+  const h=IDX[+b.dataset.hit]; closeResults(); $("#q").value="";
+  if(h.url) window.open(h.url,"_blank","noopener"); else h.act();
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeResults()});
+document.addEventListener("click",e=>{if(!e.target.closest(".search"))closeResults()});
+
+const start=(location.hash||"").slice(1);
+if(start&&(CH[start]||start==="news"||start==="help"||start==="sheets"||start==="spg")) route.page=start;
+render();
+</script>
+</body>
+</html>

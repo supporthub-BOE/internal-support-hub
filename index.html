@@ -141,7 +141,8 @@
   .page { display: none; }
   .page.active { display: block; }
   .playbook-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
-  .playbook-frame { width:100%; height:calc(100vh - 190px); min-height:560px; border:1px solid var(--border, #e2e2e2); border-radius:12px; background:#fff; display:block; }
+  #onboarding-playbook { scroll-margin-top: 70px; }
+  .playbook-frame { width:100%; height:calc(100vh - 120px); min-height:560px; border:1px solid var(--border, #e2e2e2); border-radius:12px; background:#fff; display:block; }
 
   .page-header { margin-bottom: 24px; }
   .page-title { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
@@ -450,10 +451,6 @@
       <div class="nav-item" onclick="showPage('onboarding', this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
         Onboarding
-      </div>
-      <div class="nav-item" onclick="showPage('playbook', this)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        CS Playbook
       </div>
       <div class="nav-item" onclick="showPage('sops', this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
@@ -878,7 +875,7 @@
           </div>
           <div class="card-links">
             <a class="card-link" href="https://docs.google.com/document/d/1vGGqwLTf98PbPDSx9CpLVwPrry8gDkoXraF0F6cc858/edit?tab=t.0" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>CS Onboarding Guide</a>
-            <a class="card-link" href="Bright-Footwear-CS-Playbook.html" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>CS Playbook</a>
+            <a class="card-link" href="#" onclick="event.preventDefault();event.stopPropagation();showPage('onboarding', document.querySelector('.nav-item[onclick*=&quot;onboarding&quot;]'));setTimeout(()=>document.getElementById('onboarding-playbook').scrollIntoView({behavior:'smooth'}),50)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>CS Playbook</a>
           </div>
         </div>
 
@@ -1530,7 +1527,7 @@
             </div>
           </div>
           <div class="card-links">
-            <a class="card-link" href="#" onclick="event.preventDefault();showPage('playbook', document.querySelector('.nav-item[onclick*=&quot;playbook&quot;]'))">
+            <a class="card-link" href="#" onclick="event.preventDefault();document.getElementById('onboarding-playbook').scrollIntoView({behavior:'smooth'})">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               Open Playbook
             </a>
@@ -1543,6 +1540,15 @@
 
       </div>
 
+      <div class="section-label" id="onboarding-playbook" style="margin-top:24px">
+        <div class="section-label-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          Bright Footwear CS Playbook
+        </div>
+        <a class="card-link" href="Bright-Footwear-CS-Playbook.html" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open in new tab</a>
+      </div>
+      <iframe class="playbook-frame" src="Bright-Footwear-CS-Playbook.html" title="Bright Footwear CS Playbook" loading="lazy"></iframe>
+
       <div class="section-label" style="margin-top:24px">
         <div class="section-label-text">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
@@ -1553,21 +1559,6 @@
         <div class="resource-block-title">Getting Started Notes</div>
         <div class="resource-content editable" contenteditable="false">Add any additional onboarding notes, first-week tasks, or team-specific reminders here. Click "Edit" to customize.</div>
       </div>
-    </div>
-
-    <!-- CS PLAYBOOK -->
-    <div class="page" id="page-playbook">
-      <div class="playbook-bar">
-        <div class="page-header" style="margin-bottom:0">
-          <div class="page-title">Bright Footwear CS Playbook</div>
-          <div class="page-desc">Interactive guide for new agents — store policies, phone support, and email flows with macros, examples and quizzes.</div>
-        </div>
-        <a class="card-link" href="Bright-Footwear-CS-Playbook.html" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Open in new tab
-        </a>
-      </div>
-      <iframe class="playbook-frame" src="Bright-Footwear-CS-Playbook.html" title="Bright Footwear CS Playbook" loading="lazy"></iframe>
     </div>
 
     <div class="page" id="page-sops">

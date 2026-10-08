@@ -182,6 +182,30 @@
   .lock-desc { color: var(--text2); font-size:.92em; margin-top:3px; }
   .lock-chip { align-self:flex-start; display:inline-block; font-size:.75em; font-weight:600; color: var(--text2); background: var(--surface2); border:1px solid var(--border2); border-radius:999px; padding:2px 9px; margin-top:4px; }
   .nav-lock { margin-left:auto; font-size:.8em; opacity:.7; }
+  .ob-checklist { background: var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px 20px; margin-bottom:8px; }
+  .ob-top { display:flex; justify-content:space-between; align-items:flex-end; gap:12px; flex-wrap:wrap; }
+  .ob-title { font-weight:700; font-size:1.1em; }
+  .ob-sub { color: var(--text2); font-size:.9em; margin-top:2px; }
+  .ob-count { font-weight:700; font-size:.92em; color: var(--text2); white-space:nowrap; }
+  .ob-bar { height:8px; background: var(--surface2); border-radius:999px; margin:12px 0 4px; overflow:hidden; }
+  .ob-fill { height:100%; width:0; border-radius:999px; transition: width .3s ease; }
+  .ob-checklist[data-list="bright"] .ob-fill { background: var(--amber); }
+  .ob-checklist[data-list="renesia"] .ob-fill { background: var(--purple); }
+  .ob-group { margin-top:14px; }
+  .ob-group-title { font-size:.75em; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color: var(--text3); margin-bottom:4px; }
+  .ob-item { display:flex; gap:12px; align-items:flex-start; padding:9px 4px; border-bottom:1px solid var(--border); cursor:pointer; }
+  .ob-item:last-child { border-bottom:0; }
+  .ob-item input { width:18px; height:18px; margin-top:2px; flex-shrink:0; cursor:pointer; }
+  .ob-checklist[data-list="bright"] .ob-item input { accent-color: var(--amber); }
+  .ob-checklist[data-list="renesia"] .ob-item input { accent-color: var(--purple); }
+  .ob-text { flex:1; font-size:.94em; line-height:1.45; }
+  .ob-text small { display:block; color: var(--text3); font-size:.88em; }
+  .ob-item.done .ob-text > span { text-decoration: line-through; color: var(--text3); }
+  .ob-link { font-size:.85em; font-weight:600; color: var(--blue); text-decoration:none; white-space:nowrap; margin-top:2px; }
+  .ob-link:hover { text-decoration: underline; }
+  .ob-done-msg { display:none; margin-top:12px; padding:10px 14px; border-radius:10px; background: var(--green-light); color: var(--green); font-weight:600; font-size:.92em; }
+  .ob-checklist.complete .ob-done-msg { display:block; }
+  .ob-reset { background:none; border:0; color: var(--text3); font:inherit; font-size:.82em; cursor:pointer; text-decoration:underline; padding:0; margin-top:10px; }
   .card-placeholder { border-style: dashed; }
   .todo-chip { align-self:flex-start; width:auto; display:inline-block; font-size:.8em; font-weight:600; color: var(--text3); background: var(--surface2); border-radius:999px; padding:3px 10px; }
   @media (max-width: 760px) { .brand-switch { order: 3; width: 100%; justify-content: center; } .topbar { flex-wrap: wrap; height: auto; padding-top: 8px; padding-bottom: 8px; gap: 8px; } }
@@ -1591,6 +1615,7 @@
         <div class="page-title">Onboarding Docs</div>
         <div class="page-desc">Resources and guides for new CS team members.</div>
       </div>
+      <div class="ob-checklist" data-list="bright"></div>
 
       <div class="section-label">
         <div class="section-label-text">
@@ -1663,7 +1688,7 @@
       <div class="section-label" style="margin-top:24px">
         <div class="section-label-text">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-          Checklist
+          Notes
         </div>
       </div>
       <div class="resource-block">
@@ -1889,6 +1914,7 @@
         <div class="page-title">Renesia Onboarding</div>
         <div class="page-desc">Resources and guides for new team members supporting Renesia.</div>
       </div>
+      <div class="ob-checklist" data-list="renesia"></div>
       <div class="setup-banner">
         <div><div class="setup-title">💜 Renesia — hair supplement brand</div>
         <div class="setup-desc">Some links are still being added. Cards marked “Link to be added” are placeholders — click <b>Edit</b>, update the card, then <b>Export</b> and upload to GitHub.</div></div>
@@ -2536,6 +2562,92 @@ let editMode = false;
 let currentGridId = null;
 let editingCardId = null;
 let linkCounter = 0;
+
+
+const OB = {
+  bright: { title: "👟 Your Bright Footwear onboarding checklist", sub: "Tick each item as you finish it. Your progress is saved in this browser.", groups: [
+    ["Day 1 — Get set up", [
+      ["b-intro","Watch the introduction video","Start here",{url:"https://www.loom.com/share/b174f410e5b64a809e2f112603db8185"}],
+      ["b-guide","Read the CS Onboarding Guide",null,{url:"https://docs.google.com/document/d/1vGGqwLTf98PbPDSx9CpLVwPrry8gDkoXraF0F6cc858/edit?tab=t.0"}],
+      ["b-access","Confirm you can log in to Zendesk, Shopify, Slack (CS-TEAM channel) and Quo","Ask your team lead for any missing access",null],
+      ["b-site","Explore the Bright Footwear website and products",null,{url:"https://www.bright-footwear.com/"}]]],
+    ["Learn the rules", [
+      ["b-spg","Read the Store Policy Guidelines","Restocking fee, Zendesk statuses, escalations, Slack format",{url:"Bright-Footwear-CS-Playbook.html#spg"}],
+      ["b-refund","Read the Refund Policy V3",null,{url:"https://docs.google.com/document/d/1Bq0kya9ZpxLAWVtC8esvePT_N4asnYErumyD-WxHcjc/edit?tab=t.0#heading=h.qc6jiuz2kcrm"}],
+      ["b-macros","Get familiar with the Macro Database","Every reply should use a macro",{url:"https://docs.google.com/spreadsheets/d/1fg2Gf-RG-2zm8O9k30uOtvajyaGFeveIcLZtubw9aw4/edit?gid=133717234#gid=133717234"}],
+      ["b-ps","Learn how to log in the Problem Sheet","Every refund, resend and store credit is logged",{url:"https://www.loom.com/share/d64b090fbb644f59897221a1ed870a70"}]]],
+    ["Practice with the CS Playbook", [
+      ["b-email","Walk through the 4 email chapters and pass each quiz","Return · Where is my order · Cancel · Exchange",{play:true}],
+      ["b-phone","Complete the Phone support section and its quiz","Overview, call flow, scripts, follow-ups, call logging",{url:"Bright-Footwear-CS-Playbook.html#phone"}],
+      ["b-examples","Review the example tickets in each chapter",null,{play:true}]]],
+    ["Before going live", [
+      ["b-1on1","Do your 1:1 check-in with your team lead",null,null],
+      ["b-first","Handle your first tickets and calls with team lead review",null,null]]]
+  ]},
+  renesia: { title: "💜 Your Renesia onboarding checklist", sub: "Tick each item as you finish it. Your progress is saved in this browser.", groups: [
+    ["Day 1 — Get set up", [
+      ["r-access","Confirm you can log in to Commslayer, Shopify, Recharge and Quo","Ask your team lead for any missing access",{page:"r-tools"}],
+      ["r-site","Explore the Renesia website",null,{url:"https://renesia.co/"}]]],
+    ["Know the product", [
+      ["r-guide","Read the 90-Day Hair Renewal Guide","The same guide customers receive",{url:"Renesia-90-Day-Hair-Renewal-Guide.pdf"}],
+      ["r-glance","Review Product at a glance","Formula, dose, how to take it, 90-day timeline",{anchor:"renesia-product"}],
+      ["r-rules","Learn the rules for agents","No medical advice or promised results; FDA disclaimer; when to refer to a doctor",{anchor:"renesia-product"}],
+      ["r-faqs","Read the Customer FAQs",null,{page:"r-faqs"}]]],
+    ["Learn the tools", [
+      ["r-macros","Get familiar with the Renesia Macro Database",null,{url:"https://docs.google.com/spreadsheets/d/1dXjiKBxNmA8xrEOZk81mDnEMOrBnKp9WdMM44QqlyTA/edit?gid=1186236495#gid=1186236495"}],
+      ["r-recharge","Learn how to find a subscription in Recharge",null,{url:"https://00sb0u-4q-sp.admin.rechargeapps.com/merchant/subscriptions?limit=25"}],
+      ["r-ps","Know where the Renesia Problem Sheet is",null,{url:"https://drive.google.com/drive/folders/1Y3xdB4ME30poKRws3eq2gHFzN0x2mjIs"}]]],
+    ["Before going live", [
+      ["r-policy","Review Renesia refund and subscription policies with your team lead","Including opened or used supplements",{page:"r-policies"}],
+      ["r-1on1","Do your 1:1 check-in with your team lead",null,null]]]
+  ]}
+};
+function obLoad(k){ try { return JSON.parse(localStorage.getItem('hub-ob-'+k)||'[]'); } catch(e){ return []; } }
+function obSave(k,v){ try { localStorage.setItem('hub-ob-'+k, JSON.stringify(v)); } catch(e){} }
+function obEsc(t){ return String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function obLinkHTML(l){
+  if(!l) return '';
+  if(l.url) return `<a class="ob-link" href="${l.url}" target="_blank" rel="noopener">Open ↗</a>`;
+  if(l.play) return `<a class="ob-link" href="#" data-ob-play="1">Open playbook</a>`;
+  if(l.page) return `<a class="ob-link" href="#" data-ob-page="${l.page}">Go →</a>`;
+  if(l.anchor) return `<a class="ob-link" href="#" data-ob-anchor="${l.anchor}">View ↓</a>`;
+  return '';
+}
+function renderChecklist(el){
+  const k = el.dataset.list, d = OB[k]; if(!d) return;
+  const done = new Set(obLoad(k));
+  const total = d.groups.reduce((n,g)=>n+g[1].length,0);
+  el.innerHTML = `<div class="ob-top"><div><div class="ob-title">${d.title}</div><div class="ob-sub">${d.sub}</div></div><div class="ob-count"></div></div>
+    <div class="ob-bar"><div class="ob-fill"></div></div>
+    ${d.groups.map(g=>`<div class="ob-group"><div class="ob-group-title">${obEsc(g[0])}</div>${g[1].map(it=>`
+      <label class="ob-item${done.has(it[0])?' done':''}"><input type="checkbox" data-id="${it[0]}"${done.has(it[0])?' checked':''}>
+      <div class="ob-text"><span>${obEsc(it[1])}</span>${it[2]?`<small>${obEsc(it[2])}</small>`:''}</div>${obLinkHTML(it[3])}</label>`).join('')}</div>`).join('')}
+    <div class="ob-done-msg">🎉 All done! You've completed your onboarding checklist. Let your team lead know.</div>
+    <button class="ob-reset" type="button">Reset checklist</button>`;
+  const update = () => {
+    const n = el.querySelectorAll('input:checked').length;
+    el.querySelector('.ob-count').textContent = `${n} of ${total} done`;
+    el.querySelector('.ob-fill').style.width = (n/total*100)+'%';
+    el.classList.toggle('complete', n===total);
+  };
+  el.addEventListener('change', e => {
+    const cb = e.target.closest('input[data-id]'); if(!cb) return;
+    cb.closest('.ob-item').classList.toggle('done', cb.checked);
+    obSave(k, [...el.querySelectorAll('input:checked')].map(i=>i.dataset.id));
+    update();
+  });
+  el.addEventListener('click', e => {
+    const a = e.target.closest('a[data-ob-page],a[data-ob-anchor],a[data-ob-play]');
+    if(e.target.closest('.ob-reset')){ obSave(k,[]); renderChecklist(el); return; }
+    if(!a) return;
+    e.preventDefault();
+    if(a.dataset.obPage){ const nav=document.querySelector(`.nav-item[onclick*="'${a.dataset.obPage}'"]`); showPage(a.dataset.obPage, nav); }
+    else if(a.dataset.obAnchor){ document.getElementById(a.dataset.obAnchor).scrollIntoView({behavior:'smooth'}); }
+    else if(a.dataset.obPlay){ openPlaybook(document.querySelector('.nav-sub')); }
+  });
+  update();
+}
+document.addEventListener('DOMContentLoaded', () => document.querySelectorAll('.ob-checklist').forEach(renderChecklist));
 
 function switchBrand(brand) {
   document.querySelectorAll('.brand-btn').forEach(b => b.classList.toggle('active', b.dataset.brand === brand));
